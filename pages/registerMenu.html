@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TrainingApp - MP & PM</title>
-    <link href="styles\indexStyle.css" rel="stylesheet">
+    <link href="../styles/registerMenuStyle.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;700&display=swap" rel="stylesheet">
 
@@ -21,24 +21,28 @@
         <main>
             <nav>
                 <div class="menu" id="loginSection">
-                    <a>
+                    <a href="../index.html">
                         <p class="loginMenu">Zaloguj się</p>
                     </a>
-                    <a href="pages/registerMenu.html">
+                    <a href="registerMenu.html">
                         <p class="registerMenu">Rejestracja</p>
                     </a>
                 </div>
             </nav>
             <div id="accountContent">
-                <form id="loginForm">
-                    <input type="text" placeholder="E-mail">
-                    <input type="password" placeholder="Hasło">
-                    <button class="login">Zaloguj się!</button>
-                    <button class="registerAccount">Przypomnij hasło</button>
+                <form id="registerForm">
+                    <input type="text" id="email" placeholder="E-mail">
+                    <input type="text" id="name" placeholder="Imię">
+                    <input type="text" id="secondName" placeholder="Nazwisko">
+                    <input type="password1" placeholder="Hasło">
+                    <input type="password2" placeholder="Powtórz hasło">
+                    <button class="zarejestruj">Zarejestruj się!</button>
                 </form>
             </div>
         </main>
     </div>
 </body>
+<script>
+</script>
 
 </html>
