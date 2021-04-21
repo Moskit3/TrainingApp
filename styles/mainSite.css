@@ -96,7 +96,10 @@ body {
 }
 
 .table td, .table th {
-    border:none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: white 1px solid;
 }
 
 #panelMainContent {
@@ -152,33 +155,44 @@ nav {
     justify-content: space-around;
 }
 
-nav>a {
-    /* Ikony w kontenerze nawigacji */
-    height: 100%;
-    line-height: 10vh;
-    font-size: 300%;
-    width: 20%;
-    text-align: center;
-    color: white;
-    text-decoration: none;
-}
-
 /* Logo w nawigacji */
-nav>a:first-of-type {
+.trainingApp{
     width: 50%;
     font-weight: bold;
     font-size: 64px;
     line-height: 75px;
     color: #FFFFFF;
     text-shadow: 2px 7px 9px #1B1717;
+    color:white;
+    text-align: center;
 }
 
-nav > a:hover:first-child{
-    color: white;
+.trainingApp a{
+    color:white;
     text-decoration: none;
 }
 
-nav > a:hover{
+.trainingApp a:hover{
+    color:white;
+    text-decoration: none;
+}
+
+.navIcon{
+    /* Ikony w kontenerze nawigacji */
+    height: 100%;
+    line-height: 10vh;
+    font-size: 300%;
+    width: 20%;
+    text-align: center;
+}
+
+.navIcon a{
+    text-shadow: 2px 7px 9px #1B1717;
+    color:white;
+    text-decoration: none;
+}
+
+.navIcon a:hover{
     color: rgba(74, 88, 89);
 }
 
