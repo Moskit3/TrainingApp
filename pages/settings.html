@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TrainingApp - MP & PM</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/5820e99692.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../styles/settings.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="background">
+        <div class="bg"></div>
+        <nav>
+            <span class="trainingApp"><a href="mainSite.html">TrainingApp</a></span>
+            <span class=navIcon><a href="mainSite.html"><i class="fas fa-utensils"></i></a></span>
+            <span class=navIcon><a href="workouts.html"><i class="fas fa-dumbbell"></i></a></span>
+            <span class=navIcon><a href="#"><i class="fas fa-calendar-alt"></i></a></span>
+            <span class=navIcon><a href="settings.html"><i class="fas fa-cogs"></i></a></span>
+        </nav>
+        <main>
+            <div class="settingsMainBox" id="profileSettings">
+                <header>Ustawienia profilu</header>
+                <h3>Płeć</h3>
+                <input type="radio" name="sex" value="man"> Mężczyzna
+                <input type="radio" name="sex" value="woman"> Kobieta
+                <h3>Wzrost</h3>
+                <input type="number" id="height">
+                <h3>Waga</h3>
+                <input type="number" id="weight">
+                <h3>Data urodzenia</h3>
+                <input type="date" id="bateOfBirth">
+                <h3>Cel</h3>
+                <select id="goal">
+                    <option value="massGain">Nabranie masy</option>
+                    <option value="slimming">Odchudzanie</option>
+                </select>
+            </div>
+            <div class="settingsMainBox" id="measurements">
+                <header>Pomiary</header>
+                <table>
+                    <tr>
+                        <th>Data</th>
+                        <th>Waga</th>
+                    </tr>
+                    <tr>
+                        <td>23/04/2021</td>
+                        <td>75kg</td>
+                    </tr>
+                    <tr>
+                        <td>30/04/2021</td>
+                        <td>74.5kg</td>
+                    </tr>
+                </table>
+                <button id="addNewMeasurement">Aktualizuj</button>
+            </div>
+
+        </main>
+
+        <aside>
+            <div id=""></div>
+        </aside>
+    </div>
+
+
+</body>
+
+</html>
