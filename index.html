@@ -31,14 +31,51 @@
             </nav>
             <div id="accountContent">
                 <form id="loginForm">
-                    <input type="text" placeholder="E-mail">
-                    <input type="password" placeholder="Hasło">
-                    <a class="login" href="pages/mainSite.html">Zaloguj się!</a>
-                    <a class="login" href="pages/#.html">Przypomnij hasło</a>
+                    <input type="mail" id="mail" placeholder="E-mail">
+                    <input type="password" id="password" placeholder="Hasło">
+                    
+                    <button onclick="handleLogin()" class="login" >Zaloguj się!</button>
+                    <button class="login">Przypomnij hasło</button>
                 </form>
             </div>
         </main>
     </div>
+
+   <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
+
+  <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-app.js"></script>
+
+  <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+  <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-analytics.js"></script>
+
+  <!-- Add Firebase products that you want to use -->
+  <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-firestore.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+        https://firebase.google.com/docs/web/setup#available-libraries -->
+
+        <script src="../TrainingApp-main/scripts/firebase-config.js" async defer></script>
+
+    <script>
+        function handleLogin() {
+        let inputUsername = document.getElementById("mail").value;
+        let inputPassword = document.getElementById("password").value;
+
+        firebase
+            .auth()
+            .signInWithEmailAndPassword(inputUsername, inputPassword)
+            .then(() => {
+            console.log("User logged in");
+            location.href = "pages/mainSite.html";
+            })
+            .catch((error) => {
+            console.error(error);
+            });
+        }
+    </script>
+
 </body>
 
 </html>
