@@ -149,9 +149,23 @@ nav {
     font-size: 1.5vh
 }
 
+
+#errorBox {
+    top: 75%;
+    position: fixed;
+    left: 25%;
+    margin-bottom: 10px;
+    width: 50%;
+    height: 5vh;
+    border: 0;
+    background-color: transparent;
+    color: red;
+    font-size: 1.5vh;
+}
+
 button {
     top: 85%;
-    position:fixed;
+    position: fixed;
     left: 25%;
     margin-bottom: 10px;
     width: 50%;
