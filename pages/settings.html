@@ -15,7 +15,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap" rel="stylesheet">
 </head>
 
-<body>
+<body onload="showMeasurements()">
     <div class="background">
         <div class="bg"></div>
         <nav>
@@ -50,19 +50,12 @@
             </div>
             <div class="settingsMeasurementsBox" id="measurements">
                 <header>Pomiary</header>
-                <table>
+                <table id="measurementTable">
                     <tr>
                         <th>Data</th>
                         <th>Waga</th>
                     </tr>
-                    <tr>
-                        <td>23/04/2021</td>
-                        <td>75kg</td>
-                    </tr>
-                    <tr>
-                        <td>30/04/2021</td>
-                        <td>74.5kg</td>
-                    </tr>
+
                 </table>
                 <button id="addNewMeasurement">Aktualizuj</button>
             </div>
@@ -90,6 +83,67 @@
     <script src="../scripts/firebase-config.js"></script>
 
     <script>
+        function showMeasurements() {
+            var database = firebase.database();
+            var user = firebase.auth().currentUser;
+
+            firebase.auth().onAuthStateChanged((user) => {
+                if (user) {
+                    // User logged in already or has just logged in.
+                    console.log(user.uid);
+                    user_id = user.uid;
+                    const dbRef = firebase.database().ref();
+                    dbRef.child("users").child(user_id).child("measurements").get().then((snapshot) => {
+                        if (snapshot.exists()) {
+                            console.log(snapshot.val());
+                            measurments = Object.values(snapshot.val());
+                            addItemsTable(measurments);
+                        } else {
+                            console.log("No data available");
+                        }
+                    }).catch((error) => {
+                        console.error(error);
+                    });
+                } else {
+                    console.log("uzytkownik niezalogowany");
+                }
+            });
+        }
+    </script>
+    <script>
+        function addItemsTable(data) {
+            //pokazywanie danych w to do
+            var getTable = document.getElementById("measurementTable");
+            var TextForDateRow;
+            var TextForWeightRow;
+            var createTr;
+            var CreateDateRow;
+            var CreateWeightRow;
+            data.forEach((ex) => {
+                console.log(ex.date);
+                console.log(ex.weight);
+
+                createTr = document.createElement("TR"); // Create a <li> node
+                CreateDateRow = document.createElement("TD");
+                CreateWeightRow = document.createElement("TD");
+
+                CreateDateRow.setAttribute("id", ex.date);
+                CreateWeightRow.setAttribute("id", ex.weight);
+
+                TextForDateRow = document.createTextNode(ex.date);
+                TextForWeightRow = document.createTextNode(ex.weight);
+
+                CreateDateRow.appendChild(TextForDateRow);
+                CreateWeightRow.appendChild(TextForWeightRow);
+                getTable.appendChild(createTr);
+                getTable.appendChild(CreateDateRow);
+                getTable.appendChild(CreateWeightRow);
+
+
+            });
+        }
+    </script>
+    <script>
         function updateSettings() {
             var database = firebase.database();
             let name = document.getElementById("name").value;
@@ -116,47 +170,14 @@
                         dateOfBirth: dateOfBirth,
                         goal: goal,
                     });
-                    const dbRef = firebase.database().ref();
-                    dbRef.child("users").child(user_id).get().then((snapshot) => {
-                        if (snapshot.exists()) {
-                            console.log(snapshot.val());
-                        } else {
-                            console.log("No data available");
-                        }
-                    }).catch((error) => {
-                        console.error(error);
-                    });
                 } else {
                     console.log("uzytkownik niezalogowany");
                 }
             });
         }
     </script>
-    <script>
-        // TO DZIAŁA ALE WYWALA BŁĄD
-        /*
-        var database = firebase.database();
-        var user = firebase.auth().currentUser;
-        firebase.auth().onAuthStateChanged((user) => {
-            if (user) {
-                console.log(user.uid);
-                user_id = user.uid;
-                const dbRef = firebase.database().ref();
-                dbRef.child("users").child(user_id).get().then((snapshot) => {
-                    if (snapshot.exists()) {
-                        console.log(snapshot.val());
-                    } else {
-                        console.log("No data available");
-                    }
-                }).catch((error) => {
-                    console.error(error);
-                });
-            } else {
-                console.log("uzytkownik niezalogowany");
-            }
-        });
-        */
-    </script>
+
+
 </body>
 
 </html>
