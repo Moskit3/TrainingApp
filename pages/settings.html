@@ -26,24 +26,29 @@
             <span class=navIcon><a href="settings.html"><i class="fas fa-cogs"></i></a></span>
         </nav>
         <main>
-            <div class="settingsMainBox" id="profileSettings">
+            <div class="settingsProfileBox" id="profileSettings">
                 <header>Ustawienia profilu</header>
+                <h3>Imię</h3>
+                <input type="text" id="name">
+                <h3>Nazwisko</h3>
+                <input type="text" id="secondName">
                 <h3>Płeć</h3>
-                <input type="radio" name="sex" value="man"> Mężczyzna
-                <input type="radio" name="sex" value="woman"> Kobieta
+                <input type="radio" name="sex" value="man" id="sex"> Mężczyzna
+                <input type="radio" name="sex" value="woman" id="sex"> Kobieta
                 <h3>Wzrost</h3>
                 <input type="number" id="height">
                 <h3>Waga</h3>
                 <input type="number" id="weight">
                 <h3>Data urodzenia</h3>
-                <input type="date" id="bateOfBirth">
+                <input type="date" id="dateOfBirth">
                 <h3>Cel</h3>
                 <select id="goal">
                     <option value="massGain">Nabranie masy</option>
                     <option value="slimming">Odchudzanie</option>
                 </select>
+                <button onclick="updateSettings()">Aktualizuj</button>
             </div>
-            <div class="settingsMainBox" id="measurements">
+            <div class="settingsMeasurementsBox" id="measurements">
                 <header>Pomiary</header>
                 <table>
                     <tr>
@@ -68,8 +73,90 @@
             <div id=""></div>
         </aside>
     </div>
+    <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
+
+    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-app.js"></script>
+
+    <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+    <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-analytics.js"></script>
+
+    <script defer src="https://www.gstatic.com/firebasejs/8.4.1/firebase-auth.js"></script>
+
+    <script defer src="https://www.gstatic.com/firebasejs/8.4.1/firebase-database.js"></script>
 
 
+
+    <script src="../scripts/firebase-config.js"></script>
+
+    <script>
+        function updateSettings() {
+            var database = firebase.database();
+            let name = document.getElementById("name").value;
+            let secondName = document.getElementById("secondName").value;
+            let sex = document.getElementById("sex").value;
+            let height = document.getElementById("height").value;
+            let weight = document.getElementById("weight").value;
+            let dateOfBirth = document.getElementById("dateOfBirth").value;
+            let goal = document.getElementById("goal").value;
+
+            var user = firebase.auth().currentUser;
+
+            firebase.auth().onAuthStateChanged((user) => {
+                if (user) {
+                    // User logged in already or has just logged in.
+                    console.log(user.uid);
+                    user_id = user.uid;
+                    firebase.database().ref('users/' + user_id + '/userInfo').set({
+                        name: name,
+                        secondName: secondName,
+                        sex: sex,
+                        height: height,
+                        weight: weight,
+                        dateOfBirth: dateOfBirth,
+                        goal: goal,
+                    });
+                    const dbRef = firebase.database().ref();
+                    dbRef.child("users").child(user_id).get().then((snapshot) => {
+                        if (snapshot.exists()) {
+                            console.log(snapshot.val());
+                        } else {
+                            console.log("No data available");
+                        }
+                    }).catch((error) => {
+                        console.error(error);
+                    });
+                } else {
+                    console.log("uzytkownik niezalogowany");
+                }
+            });
+        }
+    </script>
+    <script>
+        // TO DZIAŁA ALE WYWALA BŁĄD
+        /*
+        var database = firebase.database();
+        var user = firebase.auth().currentUser;
+        firebase.auth().onAuthStateChanged((user) => {
+            if (user) {
+                console.log(user.uid);
+                user_id = user.uid;
+                const dbRef = firebase.database().ref();
+                dbRef.child("users").child(user_id).get().then((snapshot) => {
+                    if (snapshot.exists()) {
+                        console.log(snapshot.val());
+                    } else {
+                        console.log("No data available");
+                    }
+                }).catch((error) => {
+                    console.error(error);
+                });
+            } else {
+                console.log("uzytkownik niezalogowany");
+            }
+        });
+        */
+    </script>
 </body>
 
 </html>
