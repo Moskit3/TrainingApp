@@ -74,7 +74,7 @@
           .then((result) => {
             firebase
               .database()
-              .ref("/users/" + result.user.uid)
+              .ref("/users/" + result.user.uid + "/userInfo")
               .set({
                 text: `hey ${result.user.uid}`,
                 mail: inputEmail,

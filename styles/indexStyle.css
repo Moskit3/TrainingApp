@@ -97,26 +97,45 @@ nav {
 #accountContent {
     position: relative;
     width: 100%;
-    height: calc(100% - 10vh);
+    height: calc(100% - 15vh);
+
+    /*FlexBox Container */
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: center;
+
+
 }
 
 #loginForm {
-    position: relative;
-    top: 6vh;
     left: 15vh;
-    width: 50%;
-    /* transform: translate(-50%, -50%); */
+    width: 100%;
+
+    /*FlexBox Container */
     display: flex;
-    flex-direction: column;
+    flex-flow: column nowrap;
+    align-items: center;
+}
+
+#errorBox {
+    width: 100%;
+    height: 5vh;
+    color: red;
+    text-align: center;
+    margin-top: 5%;
+    font-weight: 800;
 }
 
 #loginForm>input {
     top: 5vh;
-    margin-bottom: 5vh;
-    width: 100%;
+    margin-bottom: 3%;
+    width: 50%;
     height: 5vh;
     background-color: #676565;
-    border: none
+    border: none;
+    color: White;
+    text-align: center;
 }
 
 #loginForm>input::placeholder {
@@ -127,14 +146,11 @@ nav {
 }
 
 .login {
-    top: 68%;
-    position:fixed;
-    left: 26%;
     text-decoration: none;
+    margin-bottom: 3%;
     line-height: 5vh;
     text-align: center;
     cursor: pointer;
-    margin-bottom: 10px;
     width: 50%;
     height: 5vh;
     border: 0;
@@ -144,15 +160,11 @@ nav {
     font-weight: 550;
 }
 
-.passw{
-    top: 80%;
-    position:fixed;
-    left: 26%;
+.passw {
     text-decoration: none;
     line-height: 5vh;
     text-align: center;
     cursor: pointer;
-    margin-bottom: 10px;
     width: 50%;
     height: 5vh;
     border: 0;
@@ -160,9 +172,4 @@ nav {
     color: white;
     font-size: 1.5vh;
     font-weight: 550;
-}
-
-#loginForm>input {
-    color: White;
-    text-align: center;
 }
