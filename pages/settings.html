@@ -26,40 +26,113 @@
             <span class=navIcon><a href="settings.html"><i class="fas fa-cogs"></i></a></span>
         </nav>
         <main>
-            <div class="settingsProfileBox" id="profileSettings">
-                <header>Ustawienia profilu</header>
-                <h3>Imię</h3>
-                <input type="text" id="name">
-                <h3>Nazwisko</h3>
-                <input type="text" id="secondName">
-                <h3>Płeć</h3>
-                <input type="radio" name="sex" value="man" id="sex"> Mężczyzna
-                <input type="radio" name="sex" value="woman" id="sex"> Kobieta
-                <h3>Wzrost</h3>
-                <input type="number" id="height">
-                <h3>Waga</h3>
-                <input type="number" id="weight">
-                <h3>Data urodzenia</h3>
-                <input type="date" id="dateOfBirth">
-                <h3>Cel</h3>
-                <select id="goal">
-                    <option value="massGain">Nabranie masy</option>
-                    <option value="slimming">Odchudzanie</option>
-                </select>
-                <button onclick="updateSettings()">Aktualizuj</button>
-            </div>
-            <div class="settingsMeasurementsBox" id="measurements">
-                <header>Pomiary</header>
-                <table id="measurementTable">
-                    <tr>
-                        <th>Data</th>
-                        <th>Waga</th>
-                    </tr>
+            <div class="content">
+                <header>   
+                    <p>Ustawienia profilu</p>
+                </header>
+                <div class="settingsProfileBox" id="profileSettings">
+                    <table id="settingsProfilTable">
+                        <tr>
+                            <th>Imie</th>
+                            <th>Waga</th>
+                        </tr>
+                    </table>
+                    <div class="col-12">        
+                        <!-- The Modal -->
+                        <div id="myModal" class="modal">
+                            <!-- Modal content -->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Ustawienia Profilu</h5>
+                                    <span class="close">
+                                        &times;
+                                    </span>
+                                </div>
+                                <div class="modal-body">
+                                    <form>
+                                        <div class="form-group">
+                                            <!-- Formularz -->
+                                            <label for="name">Imie</label>
+                                            <input class="form-control" name="name" type="text" id="name" value="" placeholder="Imie"/>
 
-                </table>
-                <button id="NewMeasurement">Aktualizuj</button>
-            </div>
+                                            <label for="name">Nazwisko</label>
+                                            <input class="form-control" name="secondName" type="text" id="secondName" value="" placeholder="Nazwisko"/>
 
+                                            <label for="name">Płeć</label>
+                                            <select class="form-control" name="sex" id="sex" placeholder="Płeć">
+                                                <option value="men">Mężczyzna</option>
+                                                <option value="women">Kobieta</option>
+                                            </select>
+
+                                            
+                                            <label for="name">Wzrost</label>
+                                            <input class="form-control" name="height" type="number" id="height" value="" placeholder="cm"/>
+
+                                            <label for="name">Waga</label>
+                                            <input class="form-control" name="weight" type="number" id="weight" value="" placeholder="kg"/>
+
+                                            <label for="name">Data urodzenia</label>
+                                            <input class="form-control" name="dateOfBirth" type="date" id="dateOfBirth" value="" placeholder="Waga"/>
+
+                                            <label for="name">Cel</label>
+                                            <select class="form-control" name="goal" id="goal">
+                                                <option value="massGain">Nabranie masy</option>
+                                                <option value="slimming">Odchudzanie</option>
+                                            </select>
+                                        </div>
+                                    </form>
+                                    <div id="errorBox" class="error"></div>
+                                    <button class="dodaj" data-dismiss="modal" type="button">Dodaj</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>           
+            <button id="myBtn" class="Aktualizuj">Aktualizuj</button>
+            <div class="content">
+                <header>
+                    <p>Pomiary</p>
+                </header>
+                <div class="settingsMeasurementsBox" id="measurements">
+                    <table id="measurementTable">
+                        <tr>
+                            <th>Data</th>
+                            <th>Waga</th>
+                        </tr>
+                    </table>
+                    <div class="col-12">        
+                        <!-- The Modal -->
+                        <div id="myModal1" class="modal">
+        
+                            <!-- Modal content -->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Pomiary</h5>
+                                    <span class="close1">
+                                        &times;
+                                    </span>
+                                </div>
+                                <div class="modal-body">
+                                    <form>
+                                        <div class="form-group">
+                                            <!-- Formularz -->
+                                            <label for="name">Data</label>
+                                            <input class="form-control" name="date" type="date" id="date"/>
+
+                                            <label for="name">Waga</label>
+                                            <input class="form-control" name="weight" type="number" id="measurementWeight" value="" placeholder="kg"/>
+                                        </div>
+                                    </form>
+                                    <div id="errorBox2" class="error"></div>
+                                    <button class="dodaj1" data-dismiss="modal1" type="button1">Dodaj</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button id="myBtn1" class="Aktualizuj1">Aktualizuj</button>
         </main>
 
         <aside>
@@ -81,8 +154,29 @@
 
 
     <script src="../scripts/firebase-config.js"></script>
+    <script src="../scripts/mymodal.js"></script>
 
     <script>
+        //TIMESTAMP
+        function Timestamp() {
+            var today = new Date();
+            today =
+            parseInt(today.getMonth() + 1) +
+            "-" +
+            today.getDate() +
+            "-" +
+            today.getFullYear() +
+            "-" +
+            today.getHours() +
+            "-" +
+            today.getMinutes() +
+            "-" +
+            today.getSeconds();
+            console.log(today);
+
+            return today;
+        }
+
         function showMeasurements() {
             var database = firebase.database();
             var user = firebase.auth().currentUser;
@@ -109,8 +203,7 @@
                 }
             });
         }
-    </script>
-    <script>
+
         function addItemsTable(data) {
             //pokazywanie danych w to do
             var getTable = document.getElementById("measurementTable");
@@ -138,12 +231,9 @@
                 getTable.appendChild(createTr);
                 getTable.appendChild(CreateDateRow);
                 getTable.appendChild(CreateWeightRow);
-
-
             });
         }
-    </script>
-    <script>
+
         function updateSettings() {
             var database = firebase.database();
             let name = document.getElementById("name").value;
@@ -153,31 +243,64 @@
             let weight = document.getElementById("weight").value;
             let dateOfBirth = document.getElementById("dateOfBirth").value;
             let goal = document.getElementById("goal").value;
-
+            var getErrorBox = document.getElementById("errorBox");
             var user = firebase.auth().currentUser;
-
-            firebase.auth().onAuthStateChanged((user) => {
-                if (user) {
+            
+            
+            if(name == "" || secondName == "" || sex == "" || height == "" || weight == "" || dateOfBirth == "" || goal == ""){
+                getErrorBox.innerHTML = "Uzupełnij wszystkie dane";
+            }else{
+                firebase.auth().onAuthStateChanged((user) => {
+                    if (user) {
                     // User logged in already or has just logged in.
-                    console.log(user.uid);
-                    user_id = user.uid;
-                    firebase.database().ref('users/' + user_id + '/userInfo').set({
-                        name: name,
-                        secondName: secondName,
-                        sex: sex,
-                        height: height,
-                        weight: weight,
-                        dateOfBirth: dateOfBirth,
-                        goal: goal,
-                    });
-                } else {
-                    console.log("uzytkownik niezalogowany");
-                }
-            });
+                        console.log(user.uid);
+                        user_id = user.uid;
+                        firebase.database().ref('users/' + user_id + '/userInfo').set({
+                            name: name,
+                            secondName: secondName,
+                            sex: sex,
+                            height: height,
+                            weight: weight,
+                            dateOfBirth: dateOfBirth,
+                            goal: goal,
+                        });
+                    } 
+                    else {
+                        console.log("uzytkownik niezalogowany");
+                    }
+                });
+                window.location.reload(true);
+            }
         }
+        
+        function addMeasurement(){
+            var database = firebase.database();
+            let date = document.getElementById("date").value;
+            let weight = document.getElementById("measurementWeight").value;
+            var user = firebase.auth().currentUser;
+            let id = Timestamp();
+            var getErrorBox = document.getElementById("errorBox2");
+
+            if(date == "" || weight == ""){
+                getErrorBox.innerHTML = "Uzupełnij wszystkie dane";
+            }
+            else{
+                firebase
+                    .database()
+                    .ref("/users/" + user_id + "/measurements/")
+                    .update({
+                        [id]: {
+                        date: date,
+                        weight: weight,
+                        },
+                    })
+                    .then(() => console.log("Data updated."))
+                    .catch((error) => {
+                        console.error(error);
+                    });
+                window.location.reload(true);
+            }
+    }
     </script>
-
-
 </body>
-
 </html>
