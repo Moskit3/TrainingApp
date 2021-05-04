@@ -46,7 +46,7 @@ header>h1 {
 }
 
 main {
-    /* margin-top: 10%; */
+    margin-top: 2%;
     width: 30vw;
     height: 60vh;
     position: absolute;
@@ -149,7 +149,6 @@ nav {
     font-size: 1.5vh
 }
 
-
 #errorBox {
     top: 75%;
     position: fixed;
@@ -174,9 +173,23 @@ button {
     background-color: #740000;
     color: white;
     font-size: 1.5vh;
+    cursor: pointer;
+}
+
+button:hover{
+    background-color: #a52534;
+}
+
+button:active{
+    background-color: #da1e34;
 }
 
 #registerForm>input {
     color: White;
+    text-align: center;
+}
+
+.form{
+    color:white;
     text-align: center;
 }

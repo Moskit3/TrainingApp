@@ -15,7 +15,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap" rel="stylesheet">
 </head>
 
-<body onload="showMeasurements()">
+<body onload="showMeasurements(); showProfileSettings()">
     <div class="background">
         <div class="bg"></div>
         <nav>
@@ -27,116 +27,143 @@
         </nav>
         <main>
             <div class="content">
-                <header>   
+                <header>
                     <p>Ustawienia profilu</p>
                 </header>
-                <div class="settingsProfileBox" id="profileSettings">
-                    <table id="settingsProfilTable">
-                        <tr>
-                            <th>Imie</th>
-                            <th>Waga</th>
-                        </tr>
-                    </table>
-                    <div class="col-12">        
+                <div class="buttons">
+                    <div class="settingsProfileBox" id="profileSettings">
+                        <table id="settingsProfilTable"></table>
+                        <div class="col-12">
                         <!-- The Modal -->
-                        <div id="myModal" class="modal">
-                            <!-- Modal content -->
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title">Ustawienia Profilu</h5>
-                                    <span class="close">
-                                        &times;
-                                    </span>
-                                </div>
-                                <div class="modal-body">
-                                    <form>
-                                        <div class="form-group">
-                                            <!-- Formularz -->
-                                            <label for="name">Imie</label>
-                                            <input class="form-control" name="name" type="text" id="name" value="" placeholder="Imie"/>
+                            <div id="myModal" class="modal">
+                                <!-- Modal content -->
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Wyznacz cel</h5>
+                                        <span class="close">
+                                            &times;
+                                        </span>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form>
+                                            <div class="form-group">
+                                                <!-- Formularz -->
+                                                <label for="name">Cel</label>
+                                                <input class="form-control" name="goal" type="number" id="goal" value=""
+                                                    placeholder="kg" />
+                                               
+                                                    <label for="sex">Płeć</label>
+                                                <select class="form-control" name="sex" id="sex" placeholder="Płeć">
+                                                    <option value="Mężczyzna">Mężczyzna</option>
+                                                    <option value="Kobieta">Kobieta</option>
+                                                </select>
 
-                                            <label for="name">Nazwisko</label>
-                                            <input class="form-control" name="secondName" type="text" id="secondName" value="" placeholder="Nazwisko"/>
+                                                <label for="height">Wzrost</label>
+                                                <input class="form-control" name="height" type="number" id="height" value=""
+                                                    placeholder="cm" />
 
-                                            <label for="name">Płeć</label>
-                                            <select class="form-control" name="sex" id="sex" placeholder="Płeć">
-                                                <option value="men">Mężczyzna</option>
-                                                <option value="women">Kobieta</option>
-                                            </select>
+                                                <label for="weight">Waga</label>
+                                                <input class="form-control" name="weight" type="number" id="weight" value=""
+                                                    placeholder="kg" />
 
-                                            
-                                            <label for="name">Wzrost</label>
-                                            <input class="form-control" name="height" type="number" id="height" value="" placeholder="cm"/>
+                                                <label for="dateOfBirth">Data urodzenia</label>
+                                                <input class="form-control" name="dateOfBirth" type="date" id="dateOfBirth"
+                                                    value="" placeholder="Waga" />
 
-                                            <label for="name">Waga</label>
-                                            <input class="form-control" name="weight" type="number" id="weight" value="" placeholder="kg"/>
-
-                                            <label for="name">Data urodzenia</label>
-                                            <input class="form-control" name="dateOfBirth" type="date" id="dateOfBirth" value="" placeholder="Waga"/>
-
-                                            <label for="name">Cel</label>
-                                            <select class="form-control" name="goal" id="goal">
-                                                <option value="massGain">Nabranie masy</option>
-                                                <option value="slimming">Odchudzanie</option>
-                                            </select>
-                                        </div>
-                                    </form>
-                                    <div id="errorBox" class="error"></div>
-                                    <button class="dodaj" data-dismiss="modal" type="button">Dodaj</button>
+                                                <label for="activityCoefficient">Współczynnik aktywnosci</label>
+                                                <select class="form-control" id="activityCoefficient" name="activityCoefficient">
+                                                    <option value="Tryb siedzący">Tryb siedzący</option>
+                                                    <option value="Aktywność niska lub umiarkowana">Aktywność niska lub
+                                                        umiarkowana</option>
+                                                    <option value="Aktywność wysoka">Aktywność wysoka</option>
+                                                    <option value="Aktywność bardzo wysoka">Aktywność bardzo wysoka</option>
+                                                </select>
+                                            </div>
+                                        </form>
+                                        <div id="errorBox" class="error"></div>
+                                        <button class="dodaj" data-dismiss="modal" type="button">Dodaj</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <button id="myBtn" class="Aktualizuj">Ustaw Cel</button>
                 </div>
-            </div>           
-            <button id="myBtn" class="Aktualizuj">Aktualizuj</button>
+            </div>
+            
             <div class="content">
                 <header>
                     <p>Pomiary</p>
                 </header>
-                <div class="settingsMeasurementsBox" id="measurements">
-                    <table id="measurementTable">
-                        <tr>
-                            <th>Data</th>
-                            <th>Waga</th>
-                        </tr>
-                    </table>
-                    <div class="col-12">        
-                        <!-- The Modal -->
-                        <div id="myModal1" class="modal">
-        
-                            <!-- Modal content -->
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title">Pomiary</h5>
-                                    <span class="close1">
-                                        &times;
-                                    </span>
-                                </div>
-                                <div class="modal-body">
-                                    <form>
-                                        <div class="form-group">
-                                            <!-- Formularz -->
-                                            <label for="name">Data</label>
-                                            <input class="form-control" name="date" type="date" id="date"/>
+                <div class="buttons">
+                    <div class="settingsMeasurementsBox" id="measurements">
+                        <table id="measurementTable">
+                            <tr>
+                                <th>Data</th>
+                                <th>Waga</th>
+                            </tr>
+                        </table>
+                        <div class="col-12">
+                            <!-- The Modal -->
+                            <div id="myModal1" class="modal">
 
-                                            <label for="name">Waga</label>
-                                            <input class="form-control" name="weight" type="number" id="measurementWeight" value="" placeholder="kg"/>
-                                        </div>
-                                    </form>
-                                    <div id="errorBox2" class="error"></div>
-                                    <button class="dodaj1" data-dismiss="modal1" type="button1">Dodaj</button>
+                                <!-- Modal content -->
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Pomiary</h5>
+                                        <span class="close1">
+                                            &times;
+                                        </span>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form>
+                                            <div class="form-group">
+                                                <!-- Formularz -->
+                                                <label for="name">Data</label>
+                                                <input class="form-control" name="date" type="date" id="date" />
+
+                                                <label for="name">Waga</label>
+                                                <input class="form-control" name="weight" type="number"
+                                                    id="measurementWeight" value="" placeholder="kg" />
+                                            </div>
+                                        </form>
+                                        <div id="errorBox2" class="error"></div>
+                                        <button class="dodaj1" data-dismiss="modal1" type="button1">Dodaj</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <button id="myBtn1" class="Aktualizuj1">Dodaj pomiary</button>
                 </div>
             </div>
-            <button id="myBtn1" class="Aktualizuj1">Aktualizuj</button>
         </main>
-
         <aside>
-            <div id=""></div>
+            <section>
+                <table id="demands">
+                    <tr>
+                        <th>Kalorie</th>
+                        <th>Białko</th>
+                        <th>Tłuszcze</th>
+                        <th>Węglowodany</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div id="kcalDemand">2000</div>
+                        </td>
+                        <td>
+                            <div id="proteinDemand">50</div>
+                        </td>
+                        <td>
+                            <div id="fatDemand">50</div>
+                        </td>
+                        <td>
+                            <div id="carbDemand">50</div>
+                        </td>
+
+                    </tr>
+                </table>
+            </section>
         </aside>
     </div>
     <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
@@ -161,17 +188,17 @@
         function Timestamp() {
             var today = new Date();
             today =
-            parseInt(today.getMonth() + 1) +
-            "-" +
-            today.getDate() +
-            "-" +
-            today.getFullYear() +
-            "-" +
-            today.getHours() +
-            "-" +
-            today.getMinutes() +
-            "-" +
-            today.getSeconds();
+                parseInt(today.getMonth() + 1) +
+                "-" +
+                today.getDate() +
+                "-" +
+                today.getFullYear() +
+                "-" +
+                today.getHours() +
+                "-" +
+                today.getMinutes() +
+                "-" +
+                today.getSeconds();
             console.log(today);
 
             return today;
@@ -243,19 +270,22 @@
             let weight = document.getElementById("weight").value;
             let dateOfBirth = document.getElementById("dateOfBirth").value;
             let goal = document.getElementById("goal").value;
+            let activityCoefficient = document.getElementById("activityCoefficient").value;
             var getErrorBox = document.getElementById("errorBox");
             var user = firebase.auth().currentUser;
-            
-            
-            if(name == "" || secondName == "" || sex == "" || height == "" || weight == "" || dateOfBirth == "" || goal == ""){
+
+
+            if (name == "" || secondName == "" || sex == "" || height == "" || weight == "" || dateOfBirth == "" || activityCoefficient == "" ||
+                goal == "" ) {
                 getErrorBox.innerHTML = "Uzupełnij wszystkie dane";
-            }else{
+            } else {
                 firebase.auth().onAuthStateChanged((user) => {
                     if (user) {
-                    // User logged in already or has just logged in.
+                        // User logged in already or has just logged in.
                         console.log(user.uid);
                         user_id = user.uid;
                         firebase.database().ref('users/' + user_id + '/userInfo').set({
+                            // mail: ,
                             name: name,
                             secondName: secondName,
                             sex: sex,
@@ -263,17 +293,17 @@
                             weight: weight,
                             dateOfBirth: dateOfBirth,
                             goal: goal,
+                            activityCoefficient: activityCoefficient,
                         });
-                    } 
-                    else {
+                    } else {
                         console.log("uzytkownik niezalogowany");
                     }
                 });
                 window.location.reload(true);
             }
         }
-        
-        function addMeasurement(){
+
+        function addMeasurement() {
             var database = firebase.database();
             let date = document.getElementById("date").value;
             let weight = document.getElementById("measurementWeight").value;
@@ -281,17 +311,16 @@
             let id = Timestamp();
             var getErrorBox = document.getElementById("errorBox2");
 
-            if(date == "" || weight == ""){
+            if (date == "" || weight == "") {
                 getErrorBox.innerHTML = "Uzupełnij wszystkie dane";
-            }
-            else{
+            } else {
                 firebase
                     .database()
                     .ref("/users/" + user_id + "/measurements/")
                     .update({
                         [id]: {
-                        date: date,
-                        weight: weight,
+                            date: date,
+                            weight: weight,
                         },
                     })
                     .then(() => console.log("Data updated."))
@@ -300,7 +329,74 @@
                     });
                 window.location.reload(true);
             }
-    }
+        }
+        /* -----------------------------------------------------------------*/
+
+        function showProfileSettings() {
+            var database = firebase.database();
+            var user = firebase.auth().currentUser;
+
+            firebase.auth().onAuthStateChanged((user) => {
+                if (user) {
+                    const dbRef = firebase.database().ref();
+                    dbRef.child("users").child(user_id).child("userInfo").get().then((
+                        snapshot) => {
+                        if (snapshot.exists()) {
+                            console.log(snapshot.val());
+                            userInfo = Object.values(snapshot.val());
+                            addItemToTableSettings(userInfo);
+                        } else {
+                            console.log("No data available");
+                        }
+                    }).catch((error) => {
+                        console.error(error);
+                    });
+                } else {
+                    console.log("uzytkownik niezalogowany");
+                }
+            });
+        }
+
+        function addItemToTableSettings(data) {
+            var getTable = document.getElementById("settingsProfilTable")
+
+            var TextForDateRow;
+            var TextForWeightRow;
+
+            var createTr;
+
+            var CreateFirstRow;
+            var CreateSecondRow;
+            counter = 0;
+
+
+            data.forEach((ex) => {
+
+                namesForTableHead = ["Imię", "Nazwisko", "Data Urodzenia", "Płeć", "Wzrost", "Waga",  "Cel",
+                    "Współczynnik aktywności"];
+                namesForTableElements = [4, 5, 1, 6, 3, 7, 2, 0];
+                createTr = document.createElement("TR"); // Create a <li> node
+                CreateFirstRow = document.createElement("TD");
+                CreateSecondRow = document.createElement("TD");
+
+                CreateFirstRow.setAttribute("id", namesForTableHead[counter]);
+                // CreateSecondRow.setAttribute("id", ex.name);
+
+                TextForDateRow = document.createTextNode(namesForTableHead[counter]);
+                TextForWeightRow = document.createTextNode(data[namesForTableElements[counter]]);
+
+                console.log(data);
+                CreateFirstRow.appendChild(TextForDateRow);
+                CreateSecondRow.appendChild(TextForWeightRow);
+
+
+                getTable.appendChild(createTr);
+                getTable.appendChild(CreateFirstRow);
+                getTable.appendChild(CreateSecondRow);
+                counter++;
+            });
+        }
     </script>
 </body>
+
 </html>

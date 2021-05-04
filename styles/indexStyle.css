@@ -160,6 +160,14 @@ nav {
     font-weight: 550;
 }
 
+.login:hover{
+    background-color: #a52534;
+}
+
+.login:active{
+    background-color: #da1e34;
+}
+
 .passw {
     text-decoration: none;
     line-height: 5vh;
@@ -172,4 +180,12 @@ nav {
     color: white;
     font-size: 1.5vh;
     font-weight: 550;
+}
+
+.passw:hover{
+    background-color: #a52534;
+}
+
+.passw:active{
+    background-color: #da1e34;
 }

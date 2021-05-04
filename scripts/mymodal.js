@@ -13,6 +13,8 @@ var span1 = document.getElementsByClassName("close1")[0];
 var button = document.getElementsByClassName("dodaj")[0];
 var button1 = document.getElementsByClassName("dodaj1")[0];
 
+
+
 // When the user clicks on the button, open the modal
 btn.onclick = function() {
   modal.style.display = "block";
@@ -36,7 +38,6 @@ button.onclick = function() {
 }
 
 button1.onclick = function() {
-    let pizda = 1;
     addMeasurement()    
 }
 
@@ -45,5 +46,6 @@ window.onclick = function(event) {
   if (event.target == modal || event.target == modal1) {
     modal.style.display = "none";
     modal1.style.display = "none";
+
   }
 }
