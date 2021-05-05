@@ -65,54 +65,81 @@
     function handleSignUp() {
       var database = firebase.database();
       let inputEmail = document.getElementById("mail").value;
+      let name = document.getElementById("name").value;
+      let secondName = document.getElementById("secondName").value;
       let inputPassword1 = document.getElementById("password1").value;
       let inputPassword2 = document.getElementById("password2").value;
       getErrorBox = document.getElementById("errorBox");
-      if (inputPassword1 == inputPassword2) {
+      if(inputEmail == "" || name == "" || secondName == "" || inputPassword1 == "" ||
+        inputPassword2 == ""){
+          window.alert("Należy uzupełnić wszystkie pola !");
+      }else{
+        if (inputPassword1 == inputPassword2) {
+          firebase
+            .auth()
+            .createUserWithEmailAndPassword(inputEmail, inputPassword1)
+            .then((result) => {
+              firebase
+                .database()
+                .ref("/users/" + result.user.uid + "/userInfo")
+                .set({
+                  mail: inputEmail,
+                  name: name,
+                  secondName: secondName,
+                  sex: "",
+                  height: "",
+                  weight: "",
+                  dateOfBirth: "",
+                  goal: "",
+                  activityCoefficient: "",
 
-        firebase
-          .auth()
-          .createUserWithEmailAndPassword(inputEmail, inputPassword1)
-          .then((result) => {
-            firebase
-              .database()
-              .ref("/users/" + result.user.uid + "/userInfo")
-              .set({
-                text: `hey ${result.user.uid}`,
-                mail: inputEmail,
-                admin: false,
-                name: "",
-                secondName: "",
-                sex: "",
-                height: "",
-                weight: "",
-                dateOfBirth: "",
-                goal: "",
+                })
+                .then(() => {
+                  console.log("User account created & signed in!");
+                  getErrorBox.innerHTML = "";
+                  location.href = "../index.html";
+                });
+            })
+            .catch((error) => {
+              if (error.code === "auth/email-already-in-use") {
+                console.log("That email address is already in use!");
+                error = "Ten adres email jest już użyty, prosze podac inny !";
+                // setStatus("Ten adres jest już użyty, proszę podać inny !");
+              }
 
-              })
-              .then(() => {
-                console.log("User account created & signed in!");
-                getErrorBox.innerHTML = "";
-                location.href = "../index.html";
-              });
-          })
-          .catch((error) => {
-            if (error.code === "auth/email-already-in-use") {
-              console.log("That email address is already in use!");
-              setError("That email address is already in use!");
-            }
-
-            if (error.code === "auth/invalid-email") {
-              console.log("That email address is invalid!");
-              setError("That email address is invalid!");
-            }
-
-            console.error(error);
-          });
-      } else {
-        getErrorBox.innerHTML = "Hasła są niepoprawne";
+              if (error.code === "auth/invalid-email") {
+                console.log("That email address is invalid!");
+                error = "Ten adres email jest błędny !";
+              }
+              console.error(error);
+              getErrorBox.innerHTML=error;
+            });
+        } else {
+          getErrorBox.innerHTML = "Hasła są niepoprawne";
+        }
       }
     }
+
+    var getPassword = document.getElementById("password1");
+      getPassword.addEventListener("keyup", function () {
+          checkpassword(getPassword);
+
+      })
+      var getErrorBox = document.getElementById("errorBox");
+
+      function checkpassword(password) {
+          if ((password.value).length < 6) {
+              getErrorBox.innerHTML = "Hasło jest za krótkie!";
+          } else {
+              getErrorBox.innerHTML = "";
+          }
+      }
+    
+
+
+
+
+
   </script>
 </body>
 

@@ -120,10 +120,11 @@ nav {
 
 #errorBox {
     width: 100%;
-    height: 5vh;
+    /* height: 5vh; */
     color: red;
     text-align: center;
-    margin-top: 5%;
+    margin-top: 2%;
+    margin-bottom: 5%;
     font-weight: 800;
 }
 

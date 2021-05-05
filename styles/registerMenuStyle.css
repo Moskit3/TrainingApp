@@ -118,7 +118,11 @@ nav {
 #accountContent {
     position: relative;
     width: 100%;
-    height: calc(100% - 10vh);
+    height: calc(100% - 20vh);
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: center;
 }
 
 #registerForm {
@@ -150,16 +154,16 @@ nav {
 }
 
 #errorBox {
-    top: 75%;
-    position: fixed;
-    left: 25%;
-    margin-bottom: 10px;
-    width: 50%;
-    height: 5vh;
-    border: 0;
-    background-color: transparent;
+    font-size: 0.8vw;
+    top: 15.5vw;
+    width: 100%;
+    /* height: 5vh; */
     color: red;
-    font-size: 1.5vh;
+    text-align: center;
+    margin-top: 2%;
+    margin-bottom: 5%;
+    font-weight: 800;
+    position: absolute;
 }
 
 button {
@@ -174,6 +178,7 @@ button {
     color: white;
     font-size: 1.5vh;
     cursor: pointer;
+    font-weight: 600;
 }
 
 button:hover{

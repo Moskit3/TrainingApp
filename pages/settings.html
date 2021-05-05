@@ -269,6 +269,9 @@
                         console.log(user.uid);
                         user_id = user.uid;
                         firebase.database().ref('users/' + user_id + '/userInfo').set({
+                            // mail: inputEmail,
+                            // name: name,
+                            // secondName: secondName,
                             sex: sex,
                             height: height,
                             weight: weight,

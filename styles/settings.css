@@ -142,7 +142,6 @@ aside {
     display: flex;
     flex-flow: row nowrap;
     justify-content: center;
-
 }
 
 
@@ -152,6 +151,10 @@ aside>section {
     height: 50%;
     font-size: 200%;
 
+}
+
+aside th{
+    padding: 0vw 1vw;
 }
 
 main {
@@ -449,7 +452,11 @@ td {
     border-bottom: 2px solid white;
 }
 
-#measurementTable td:nth-child(4n+0) {
+/* #measurementTable td:nth-child(7n) {
+    font-weight: 600;
+} */
+
+#measurementTable td:nth-child(3n+4) {
     font-weight: 600;
 }
 
@@ -463,5 +470,4 @@ th {
     color: White;
     border: 0;
     padding: 0;
-    padding-right: 5%;
 }
