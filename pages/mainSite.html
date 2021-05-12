@@ -15,7 +15,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap" rel="stylesheet">
 </head>
 
-<body onload="showAllProductsFromDatabase(); showBreakfast()">
+<body onload="showAllProductsFromDatabase();showBreakfast();">
     <div class="background">
         <div class="bg"></div>
         <nav>
@@ -27,7 +27,7 @@
         </nav>
         <main>
             <div id="panelMain" class="row">
-                
+
                 <div id="panelMainContent" class="col-12">
                     <div class="row">
                         <div class="col-5" id="meals">
@@ -40,19 +40,20 @@
                                 </table>
                             </div>
                             <div class="boxContent">
-                                <table class="table"  id="breakfast">
+                                <table class="table" id="breakfast">
                                 </table>
-                            </div>                            
-                        </div>
-                        <div id="tableFooter">
-                            <!-- <div class="boxContent" id="boxContent"></div> -->
-                            <select id="productSelect" name="products">
-                                
-                            </select>
-                            <button class="addNewProduct" onclick="addNewProduct()">Dodaj</button>
+                            </div>
+                            <div id="tableFooter">
+                                <!-- <div class="boxContent" id="boxContent"></div> -->
+                                <select id="productSelect" name="products">
+
+                                </select>
+                                <button class="addNewProduct" onclick="addNewProduct();">Dodaj</button>
+                            </div>
+
                         </div>
                     </div>
-                    
+
                 </div>
             </div>
         </main>
@@ -81,7 +82,6 @@
 
     <script src="../scripts/firebase-config.js"></script>
     <script>
-
         function Timestamp() {
             var today = new Date();
             today =
@@ -96,8 +96,6 @@
                 today.getMinutes() +
                 "" +
                 today.getSeconds();
-            console.log(today);
-
             return today;
         }
 
@@ -139,42 +137,44 @@
             //     }
             // });
         }
+
         function readAnnouncements(data) {
-        var database = firebase.database();
-        var user = firebase.auth().currentUser;
-        let id = Timestamp();
-        var table;
-        var i = 0;
+            var database = firebase.database();
+            var user = firebase.auth().currentUser;
+            let id = Timestamp();
+            var table;
+            var i = 0;
 
-        var box = document.getElementById("productSelect");
-        data.forEach((ex) => {
-            i++;
-            console.log(i);
-            Name = ex.Name;
-            Fat = ex.Fat;
-            Carbohydrates = ex.Carbohydrates;
-            Proteins = ex.Proteins;
-            // table = [Fat, Carbohydrates, Proteins];
-            // console.log(table);
+            var box = document.getElementById("productSelect");
+            data.forEach((ex) => {
+                i++;
+                Name = ex.Name;
+                Fat = ex.Fat;
+                Carbohydrates = ex.Carbohydrates;
+                Proteins = ex.Proteins;
+                Id = ex.Id
+                // table = [Fat, Carbohydrates, Proteins];
+                // console.log(table);
 
-            var container = document.createElement("option");
-            // container.classList.add("message");
-            box.appendChild(container);
+                var container = document.createElement("option");
+                // container.classList.add("message");
+                box.appendChild(container);
 
-            var products = document.createElement("span");
-            nameProducts = document.createTextNode(ex.Name);
-            products.appendChild(nameProducts );
-            container.appendChild(products);
+                var products = document.createElement("span");
+                nameProducts = document.createTextNode(ex.Name);
+                products.appendChild(nameProducts);
+                container.appendChild(products);
 
-            var nutrients = document.createElement("span")
-            nutrientsQuantity = document.createTextNode(" - " + ex.Proteins + " - " + ex.Fat + " - " + ex.Carbohydrates);
-            nutrients.appendChild(nutrientsQuantity);
-            container.appendChild(nutrients);
+                var nutrients = document.createElement("span")
+                nutrientsQuantity = document.createTextNode(" - " + ex.Proteins + " - " + ex.Fat + " - " + ex
+                    .Carbohydrates);
+                nutrients.appendChild(nutrientsQuantity);
+                container.appendChild(nutrients);
 
-        
-        
-    });
-    }
+
+
+            });
+        }
 
 
 
@@ -197,12 +197,12 @@
         //     });
         // }
 
-        function showBreakfast(){
+        function showBreakfast() {
             var database = firebase.database();
             var user = firebase.auth.currentUser;
 
             firebase.auth().onAuthStateChanged((user) => {
-                if(user){
+                if (user) {
                     user_id = user.uid;
                     const dbRef = firebase.database().ref();
                     dbRef.child("users").child(user_id).child("breakfast").get().then((snapshot) => {
@@ -232,18 +232,24 @@
             var CreateProteinsRow;
             var CreateFatRow;
             var CreateCarbohydratesRow;
-            
+
             data.forEach((ex) => {
                 createTr = document.createElement("TR"); // Create a <li> node
                 CreateNameRow = document.createElement("TD");
                 CreateProteinsRow = document.createElement("TD");
                 CreateFatRow = document.createElement("TD");
                 CreateCarbohydratesRow = document.createElement("TD");
+                var span = document.createElement("SPAN");
 
+
+
+                createTr.setAttribute("id", ex.Id);
                 CreateNameRow.setAttribute("id", ex.Name);
                 CreateProteinsRow.setAttribute("id", ex.Proteins);
                 CreateFatRow.setAttribute("id", ex.Fat);
                 CreateCarbohydratesRow.setAttribute("id", ex.Carbohydrates);
+
+
 
                 // CreateNameRow.setAttribute("class", "name");
                 // CreateProteinsRow.setAttribute("class", "choosedOption");
@@ -254,17 +260,24 @@
                 TextForProteinsRow = document.createTextNode(ex.Proteins);
                 TextForFatRow = document.createTextNode(ex.Fat);
                 TextForCarbohydratesRow = document.createTextNode(ex.Carbohydrates);
+                var txt = document.createTextNode("\u00D7");
+                span.className = "close";
 
                 CreateNameRow.appendChild(TextForNameRow);
                 CreateProteinsRow.appendChild(TextForProteinsRow);
                 CreateFatRow.appendChild(TextForFatRow);
                 CreateCarbohydratesRow.appendChild(TextForCarbohydratesRow);
-                getTable.appendChild(createTr);
-                getTable.appendChild(CreateNameRow);
-                getTable.appendChild(CreateProteinsRow);
-                getTable.appendChild(CreateFatRow);
-                getTable.appendChild(CreateCarbohydratesRow);
+                span.appendChild(txt);
 
+
+
+                createTr.appendChild(CreateNameRow);
+                createTr.appendChild(CreateProteinsRow);
+                createTr.appendChild(CreateFatRow);
+                createTr.appendChild(CreateCarbohydratesRow);
+                createTr.appendChild(span)
+                getTable.appendChild(createTr);
+                deleteToDo(span, ex.Id);
             });
         }
 
@@ -273,15 +286,15 @@
             getAddProductButton = document.querySelector("addNewProduct");
             getTable = document.getElementById("breakfast");
             getOptions = document.getElementById("productSelect");
-            
+
             var user = firebase.auth().currentUser;
             let id = Timestamp();
             var database = firebase.database();
-            
-            
+
+
             choosedOption = getOptions.options[getOptions.selectedIndex].text;
             var str;
-            str = choosedOption.split("-"); 
+            str = choosedOption.split("-");
             var Name = str[0];
             var Proteins = str[1];
             var Fat = str[2];
@@ -292,22 +305,39 @@
             createTableD2 = document.createElement("td");
             createTableD3 = document.createElement("td");
             createTableD4 = document.createElement("td");
+            var span = document.createElement("SPAN");
+
+            createTableR.setAttribute("id", id)
+
 
             sampleProductName = document.createTextNode(str[0]);
 
             sampleProductMacro1 = document.createTextNode(Proteins);
             sampleProductMacro2 = document.createTextNode(Fat);
             sampleProductMacro3 = document.createTextNode(Carbohydrates);
+            var txt = document.createTextNode("\u00D7");
+            span.className = "close";
 
             getTable.appendChild(createTableR);
             createTableR.appendChild(createTableD1);
             createTableR.appendChild(createTableD2);
             createTableR.appendChild(createTableD3);
             createTableR.appendChild(createTableD4);
+            createTableR.appendChild(span);
+
+            span.appendChild(txt);
             createTableD1.appendChild(sampleProductName);
             createTableD2.appendChild(sampleProductMacro1);
             createTableD3.appendChild(sampleProductMacro2);
             createTableD4.appendChild(sampleProductMacro3);
+
+            for (i = 0; i < close.length; i++) {
+                close[i].onclick = function () {
+                    var div = this.parentElement;
+                    div.style.display = "none";
+                };
+            }
+            deleteToDo(span, id);
 
 
 
@@ -316,17 +346,36 @@
                     // User logged in already or has just logged in.
                     user_id = user.uid;
                     firebase
-                    .database()
-                    .ref("users/" + user_id + "/breakfast")
-                    .update({
-                        [id]: {
-                            Name: Name,
-                            Proteins : Proteins,
-                            Fat: Fat,
-                            Carbohydrates : Carbohydrates
-                        },
-                    });
+                        .database()
+                        .ref("users/" + user_id + "/breakfast")
+                        .update({
+                            [id]: {
+                                Name: Name,
+                                Proteins: Proteins,
+                                Fat: Fat,
+                                Carbohydrates: Carbohydrates,
+                                Id: id,
+                            },
+                        });
                 }
+            });
+        }
+
+        function deleteToDo(el, id) {
+            // element i jego ID
+            el.addEventListener("click", (e) => {
+                var todo_id = e.target.parentNode.id;
+                console.log(id);
+                firebase
+                    .database()
+                    .ref("/users/" + user_id + "/breakfast/" + id)
+                    .remove()
+                    .then(() => {
+                        e.target.parentNode.remove();
+                    })
+                    .catch((error) => {
+                        console.error(error);
+                    });
             });
         }
     </script>
