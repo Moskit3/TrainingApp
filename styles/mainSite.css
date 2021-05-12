@@ -26,45 +26,54 @@ body {
 ::-webkit-scrollbar {
     width: 14px;
     height: 14px;
-  }
-  ::-webkit-scrollbar-button {
+}
+
+::-webkit-scrollbar-button {
     width: 0px;
     height: 0px;
-  }
-  ::-webkit-scrollbar-thumb {
+}
+
+::-webkit-scrollbar-thumb {
     background: #c83e4d;
     border: 0px none #ffffff;
     border-radius: 40px;
-  }
-  ::-webkit-scrollbar-thumb:hover {
+}
+
+::-webkit-scrollbar-thumb:hover {
     background: #c83e4d;
-  }
-  ::-webkit-scrollbar-thumb:active {
+}
+
+::-webkit-scrollbar-thumb:active {
     background: #c83e4d;
-  }
-  ::-webkit-scrollbar-track {
+}
+
+::-webkit-scrollbar-track {
     background: #454545;
     border: 0px none #ffffff;
     border-radius: 50px;
-  }
-  ::-webkit-scrollbar-track:hover {
-    background: #454545;
-  }
-  ::-webkit-scrollbar-track:active {
-    background: #454545;
-  }
-  ::-webkit-scrollbar-corner {
-    background: transparent;
-  }
+}
 
-.row{
+::-webkit-scrollbar-track:hover {
+    background: #454545;
+}
+
+::-webkit-scrollbar-track:active {
+    background: #454545;
+}
+
+::-webkit-scrollbar-corner {
+    background: transparent;
+}
+
+.row {
     margin: 0;
 }
-#meals:nth-child(1){
+
+#meals:nth-child(1) {
     margin-right: 280px;
     margin-bottom: 150px;
 }
-  
+
 #meals .boxContent {
     height: 25vh;
     background-color: rgba(74, 88, 89, 0.5);
@@ -76,13 +85,13 @@ body {
 
 #meals .table {
     background-color: rgba(74, 88, 89, 0.0);
-    color:white;
+    color: white;
 }
 
 #meals th {
     padding: 0 !important;
     text-align: center;
-    
+
 }
 
 .table-title {
@@ -95,11 +104,13 @@ body {
     text-align: center;
 }
 
-.table td, .table th {
+.table td,
+.table th {
     border-top: none;
     border-left: none;
     border-right: none;
     border-bottom: white 1px solid;
+    font-size: 1.5vw;
 }
 
 #panelMainContent {
@@ -117,7 +128,7 @@ body {
 }
 
 .boxTitle th {
-    color:white;
+    color: white;
     font-size: 4.5vh;
     font-family: Lato;
     font-weight: 400;
@@ -130,11 +141,27 @@ body {
     overflow-y: scroll;
 }
 
-.boxContent th{
+.boxContent th {
     font-weight: 500 !important;
     font-size: 2vh;
 }
-/* ________________________________ */
+
+#tableFooter {
+    width: 45%;
+    position: absolute;
+    bottom: 145px;
+    left: 0%;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-around;
+}
+
+#tableFooter>button {
+    width: 20%;
+}
+
+/* _______________________________ */
 
 
 nav {
@@ -156,28 +183,28 @@ nav {
 }
 
 /* Logo w nawigacji */
-.trainingApp{
+.trainingApp {
     width: 50%;
     font-weight: bold;
     font-size: 64px;
     line-height: 75px;
     color: #FFFFFF;
     text-shadow: 2px 7px 9px #1B1717;
-    color:white;
+    color: white;
     text-align: center;
 }
 
-.trainingApp a{
-    color:white;
+.trainingApp a {
+    color: white;
     text-decoration: none;
 }
 
-.trainingApp a:hover{
-    color:white;
+.trainingApp a:hover {
+    color: white;
     text-decoration: none;
 }
 
-.navIcon{
+.navIcon {
     /* Ikony w kontenerze nawigacji */
     height: 100%;
     line-height: 10vh;
@@ -186,13 +213,13 @@ nav {
     text-align: center;
 }
 
-.navIcon a{
+.navIcon a {
     text-shadow: 2px 7px 9px #1B1717;
-    color:white;
+    color: white;
     text-decoration: none;
 }
 
-.navIcon a:hover{
+.navIcon a:hover {
     color: rgba(74, 88, 89);
 }
 
@@ -231,8 +258,8 @@ aside>a:first-of-type {
     font-weight: 600;
 }
 
-main{
-    margin-top:10%;
+main {
+    margin-top: 10%;
 }
 
 /* Głowny kontener w środku strony obejmujący mniejsze kontenery na posiłki */
@@ -246,7 +273,7 @@ main{
     height: 100%;
 
     /* FlexBox Container dla section */
-    /* display: flex;
+/* display: flex;
     flex-flow: row wrap; */
 
 /* } */
@@ -309,7 +336,7 @@ ul.meal {
     list-style-position: inside;
 }
 
-ul{
+ul {
 
     font-size: 2vh;
     font-weight: 200;
@@ -318,3 +345,37 @@ ul{
 
 
 /* ------------------------------------------- */
+
+button{
+    border: none;
+    padding: 0.5vw;
+    font-size: 1vw;
+    background-color: #c83e4d;
+    color: #ffffff;
+    text-transform: uppercase;
+    text-align: center;
+    border: none;
+    border-bottom-left-radius: 2vh;
+    border-bottom-right-radius: 2vh;
+    border-top-left-radius: 2vh;
+    border-top-right-radius: 2vh;
+}
+
+button:hover {
+    background-color: #a52534;
+}
+
+button:active {
+    background-color: #da1e34;
+}
+
+select {
+    /* margin-left: 25px; */
+    padding: 4px;
+    border: none;
+    font-size: 1.5vw;
+    background-color: #4A5859;
+    color:white;
+    width: 350px; 
+    text-align-last:center;  
+}

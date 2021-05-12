@@ -15,7 +15,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap" rel="stylesheet">
 </head>
 
-<body>
+<body onload="showAllProductsFromDatabase(); showBreakfast()">
     <div class="background">
         <div class="bg"></div>
         <nav>
@@ -27,6 +27,7 @@
         </nav>
         <main>
             <div id="panelMain" class="row">
+                
                 <div id="panelMainContent" class="col-12">
                     <div class="row">
                         <div class="col-5" id="meals">
@@ -39,333 +40,19 @@
                                 </table>
                             </div>
                             <div class="boxContent">
-                                <table class="table">
-                                    <tr>
-                                        <th>Jabłko</th>
-                                        <th>100 / 50 / 70</th>
-
-                                    </tr>
-                                    <tr>
-                                        <th>Jabłko</th>
-                                        <th>100 / 50 / 70</th>
-
-                                    </tr>
-                                    <tr>
-                                        <th>Jabłko</th>
-                                        <th>100 / 50 / 70</th>
-
-                                    </tr>
-                                    <tr>
-                                        <th>Jabłko</th>
-                                        <th>100 / 50 / 70</th>
-
-                                    </tr>
-                                    <tr>
-                                        <th>Jabłko</th>
-                                        <th>100 / 50 / 70</th>
-
-                                    </tr>
-                                    <tr>
-                                        <th>Jabłko</th>
-                                        <th>100 / 50 / 70</th>
-                                    </tr>
-                                    <tr>
-                                        <th>Jabłko</th>
-                                        <th>100 / 50 / 70</th>
-
-                                    </tr>
-                                    <tr>
-                                        <th>Jabłko</th>
-                                        <th>100 / 50 / 70</th>
-
-                                    </tr>
-                                    <tr>
-                                        <th>Jabłko</th>
-                                        <th>100 / 50 / 70</th>
-
-                                    </tr>
-                                    <tr>
-                                        <th>Jabłko</th>
-                                        <th>100 / 50 / 70</th>
-
-                                    </tr>
-                                    <tr>
-                                        <th>Jabłko</th>
-                                        <th>100 / 50 / 70</th>
-                                    </tr>
-                                    <tr>
-                                        <th>Jabłko</th>
-                                        <th>100 / 50 / 70</th>
-                                    </tr>
-                                    <tr>
-                                        <th>Jabłko</th>
-                                        <th>100 / 50 / 70</th>
-                                    </tr>
-                                    <tr>
-                                        <th>Jabłko</th>
-                                        <th>100 / 50 / 70</th>
-                                    </tr>
-                                    <tr>
-                                        <th>Jabłko</th>
-                                        <th>100 / 50 / 70</th>
-                                    </tr>
+                                <table class="table"  id="breakfast">
                                 </table>
-                            </div>
+                            </div>                            
                         </div>
-                        <div class="col-5" id="meals">
-                            <div class="boxTitle">
-                                <table class="table-title">
-                                    <tr>
-                                        <th>śniadanie</th>
-                                        <th>P / F / C</th>
-                                    </tr>
-                                </table>
-                            </div>
-                            <div class="boxContent">
-                                <table class="table">
-                                    <tr>
-                                        <th>Jabłko</th>
-                                        <th>100 / 50 / 70</th>
-
-                                    </tr>
-                                    <tr>
-                                        <th>Jabłko</th>
-                                        <th>100 / 50 / 70</th>
-
-                                    </tr>
-                                    <tr>
-                                        <th>Jabłko</th>
-                                        <th>100 / 50 / 70</th>
-
-                                    </tr>
-                                    <tr>
-                                        <th>Jabłko</th>
-                                        <th>100 / 50 / 70</th>
-
-                                    </tr>
-                                    <tr>
-                                        <th>Jabłko</th>
-                                        <th>100 / 50 / 70</th>
-
-                                    </tr>
-                                    <tr>
-                                        <th>Jabłko</th>
-                                        <th>100 / 50 / 70</th>
-                                    </tr>
-                                    <tr>
-                                        <th>Jabłko</th>
-                                        <th>100 / 50 / 70</th>
-
-                                    </tr>
-                                    <tr>
-                                        <th>Jabłko</th>
-                                        <th>100 / 50 / 70</th>
-
-                                    </tr>
-                                    <tr>
-                                        <th>Jabłko</th>
-                                        <th>100 / 50 / 70</th>
-
-                                    </tr>
-                                    <tr>
-                                        <th>Jabłko</th>
-                                        <th>100 / 50 / 70</th>
-
-                                    </tr>
-                                    <tr>
-                                        <th>Jabłko</th>
-                                        <th>100 / 50 / 70</th>
-                                    </tr>
-                                    <tr>
-                                        <th>Jabłko</th>
-                                        <th>100 / 50 / 70</th>
-                                    </tr>
-                                    <tr>
-                                        <th>Jabłko</th>
-                                        <th>100 / 50 / 70</th>
-                                    </tr>
-                                    <tr>
-                                        <th>Jabłko</th>
-                                        <th>100 / 50 / 70</th>
-                                    </tr>
-                                    <tr>
-                                        <th>Jabłko</th>
-                                        <th>100 / 50 / 70</th>
-                                    </tr>
-                                </table>
-                            </div>
+                        <div id="tableFooter">
+                            <!-- <div class="boxContent" id="boxContent"></div> -->
+                            <select id="productSelect" name="products">
+                                
+                            </select>
+                            <button class="addNewProduct" onclick="addNewProduct()">Dodaj</button>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-5" id="meals">
-                            <div class="boxTitle">
-                                <table class="table">
-                                    <tr>
-                                        <th>śniadanie</th>
-                                        <th>100 / 50 / 70</th>
-
-                                    </tr>
-
-                                </table>
-                            </div>
-                            <div class="boxContent">
-                                <table class="table">
-                                    <tr>
-                                        <th>Jabłko</th>
-                                        <th>100 / 50 / 70</th>
-
-                                    </tr>
-                                    <tr>
-                                        <th>Jabłko</th>
-                                        <th>100 / 50 / 70</th>
-
-                                    </tr>
-                                    <tr>
-                                        <th>Jabłko</th>
-                                        <th>100 / 50 / 70</th>
-
-                                    </tr>
-                                    <tr>
-                                        <th>Jabłko</th>
-                                        <th>100 / 50 / 70</th>
-
-                                    </tr>
-                                    <tr>
-                                        <th>Jabłko</th>
-                                        <th>100 / 50 / 70</th>
-
-                                    </tr>
-                                    <tr>
-                                        <th>Jabłko</th>
-                                        <th>100 / 50 / 70</th>
-                                    </tr>
-                                    <tr>
-                                        <th>Jabłko</th>
-                                        <th>100 / 50 / 70</th>
-
-                                    </tr>
-                                    <tr>
-                                        <th>Jabłko</th>
-                                        <th>100 / 50 / 70</th>
-
-                                    </tr>
-                                    <tr>
-                                        <th>Jabłko</th>
-                                        <th>100 / 50 / 70</th>
-
-                                    </tr>
-                                    <tr>
-                                        <th>Jabłko</th>
-                                        <th>100 / 50 / 70</th>
-
-                                    </tr>
-                                    <tr>
-                                        <th>Jabłko</th>
-                                        <th>100 / 50 / 70</th>
-                                    </tr>
-                                    <tr>
-                                        <th>Jabłko</th>
-                                        <th>100 / 50 / 70</th>
-                                    </tr>
-                                    <tr>
-                                        <th>Jabłko</th>
-                                        <th>100 / 50 / 70</th>
-                                    </tr>
-                                    <tr>
-                                        <th>Jabłko</th>
-                                        <th>100 / 50 / 70</th>
-                                    </tr>
-                                    <tr>
-                                        <th>Jabłko</th>
-                                        <th>100 / 50 / 70</th>
-                                    </tr>
-                                </table>
-                            </div>
-                        </div>
-                        <div class="col-5" id="meals">
-                            <div class="boxTitle">
-                                <table class="table-title">
-                                    <tr>
-                                        <th>śniadanie</th>
-                                        <th>P / F / C</th>
-                                    </tr>
-                                </table>
-                            </div>
-                            <div class="boxContent">
-                                <table class="table">
-                                    <tr>
-                                        <th>Jabłko</th>
-                                        <th>100 / 50 / 70</th>
-
-                                    </tr>
-                                    <tr>
-                                        <th>Jabłko</th>
-                                        <th>100 / 50 / 70</th>
-
-                                    </tr>
-                                    <tr>
-                                        <th>Jabłko</th>
-                                        <th>100 / 50 / 70</th>
-
-                                    </tr>
-                                    <tr>
-                                        <th>Jabłko</th>
-                                        <th>100 / 50 / 70</th>
-
-                                    </tr>
-                                    <tr>
-                                        <th>Jabłko</th>
-                                        <th>100 / 50 / 70</th>
-
-                                    </tr>
-                                    <tr>
-                                        <th>Jabłko</th>
-                                        <th>100 / 50 / 70</th>
-                                    </tr>
-                                    <tr>
-                                        <th>Jabłko</th>
-                                        <th>100 / 50 / 70</th>
-
-                                    </tr>
-                                    <tr>
-                                        <th>Jabłko</th>
-                                        <th>100 / 50 / 70</th>
-
-                                    </tr>
-                                    <tr>
-                                        <th>Jabłko</th>
-                                        <th>100 / 50 / 70</th>
-
-                                    </tr>
-                                    <tr>
-                                        <th>Jabłko</th>
-                                        <th>100 / 50 / 70</th>
-
-                                    </tr>
-                                    <tr>
-                                        <th>Jabłko</th>
-                                        <th>100 / 50 / 70</th>
-                                    </tr>
-                                    <tr>
-                                        <th>Jabłko</th>
-                                        <th>100 / 50 / 70</th>
-                                    </tr>
-                                    <tr>
-                                        <th>Jabłko</th>
-                                        <th>100 / 50 / 70</th>
-                                    </tr>
-                                    <tr>
-                                        <th>Jabłko</th>
-                                        <th>100 / 50 / 70</th>
-                                    </tr>
-                                    <tr>
-                                        <th>Jabłko</th>
-                                        <th>100 / 50 / 70</th>
-                                    </tr>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
+                    
                 </div>
             </div>
         </main>
@@ -378,8 +65,271 @@
             <a>Kcal</a>
         </aside>
     </div>
+    <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
+
+    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-app.js"></script>
+
+    <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+    <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-analytics.js"></script>
+
+    <script defer src="https://www.gstatic.com/firebasejs/8.4.1/firebase-auth.js"></script>
+
+    <script defer src="https://www.gstatic.com/firebasejs/8.4.1/firebase-database.js"></script>
 
 
+
+    <script src="../scripts/firebase-config.js"></script>
+    <script>
+
+        function Timestamp() {
+            var today = new Date();
+            today =
+                parseInt(today.getMonth() + 1) +
+                "" +
+                today.getDate() +
+                "" +
+                today.getFullYear() +
+                "" +
+                today.getHours() +
+                "" +
+                today.getMinutes() +
+                "" +
+                today.getSeconds();
+            console.log(today);
+
+            return today;
+        }
+
+        function showAllProductsFromDatabase() {
+            var database = firebase.database();
+            var user = firebase.auth().currentUser;
+
+            firebase
+                .database()
+                .ref("/products/")
+                .once("value")
+                .then((snapshot) => {
+                    //console.log(Object.values(snapshot.val()));
+                    products = Object.values(snapshot.val());
+                    //addItemsToInput(products);
+                    readAnnouncements(products);
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
+
+            // firebase.auth().onAuthStateChanged((user) => {
+            //     if (user) {
+            //         const dbRef = firebase.database().ref();
+            //         dbRef.child("products").get().then((
+            //             snapshot) => {
+            //             if (snapshot.exists()) {
+            //                 productValues = Object.values(snapshot.val());
+            //                 producKeys = Object.keys(snapshot.val());
+            //                 addItemsToInput(producKeys);
+            //             } else {
+            //                 console.log("No data available");
+            //             }
+            //         }).catch((error) => {
+            //             console.error(error);
+            //         });
+            //     } else {
+            //         console.log("uzytkownik niezalogowany");
+            //     }
+            // });
+        }
+        function readAnnouncements(data) {
+        var database = firebase.database();
+        var user = firebase.auth().currentUser;
+        let id = Timestamp();
+        var table;
+        var i = 0;
+
+        var box = document.getElementById("productSelect");
+        data.forEach((ex) => {
+            i++;
+            console.log(i);
+            Name = ex.Name;
+            Fat = ex.Fat;
+            Carbohydrates = ex.Carbohydrates;
+            Proteins = ex.Proteins;
+            // table = [Fat, Carbohydrates, Proteins];
+            // console.log(table);
+
+            var container = document.createElement("option");
+            // container.classList.add("message");
+            box.appendChild(container);
+
+            var products = document.createElement("span");
+            nameProducts = document.createTextNode(ex.Name);
+            products.appendChild(nameProducts );
+            container.appendChild(products);
+
+            var nutrients = document.createElement("span")
+            nutrientsQuantity = document.createTextNode(" - " + ex.Proteins + " - " + ex.Fat + " - " + ex.Carbohydrates);
+            nutrients.appendChild(nutrientsQuantity);
+            container.appendChild(nutrients);
+
+        
+        
+    });
+    }
+
+
+
+        // function addItemsToInput(products) {
+        //     var getTable = document.getElementById("demands")
+
+        //     var createTd;
+        //     var CreateDiv;
+        //     var TextForRow;
+        //     var CreateSecondRow;
+
+        //     products.forEach((ex) => {
+        //         console.log(ex);
+        //         getProductSelect = document.getElementById("productSelect");
+        //         createNewOption = document.createElement("option")
+        //         createTextForNewOption = document.createTextNode(ex);
+        //         createNewOption.setAttribute("value", ex);
+        //         createNewOption.appendChild(createTextForNewOption);
+        //         getProductSelect.appendChild(createNewOption);
+        //     });
+        // }
+
+        function showBreakfast(){
+            var database = firebase.database();
+            var user = firebase.auth.currentUser;
+
+            firebase.auth().onAuthStateChanged((user) => {
+                if(user){
+                    user_id = user.uid;
+                    const dbRef = firebase.database().ref();
+                    dbRef.child("users").child(user_id).child("breakfast").get().then((snapshot) => {
+                        if (snapshot.exists()) {
+                            breakfast = Object.values(snapshot.val());
+                            addItemsTable(breakfast);
+                        } else {
+                            console.log("No data available");
+                        }
+                    }).catch((error) => {
+                        console.error(error);
+                    });
+                } else {
+                    console.log("uzytkownik niezalogowany");
+                }
+            });
+        }
+
+        function addItemsTable(data) {
+            var getTable = document.getElementById("breakfast");
+            var TextForNameRow;
+            var TextForProteinsRow;
+            var TextForFatRow;
+            var TextForCarbohydratesRow;
+            var createTr;
+            var CreateNameRow;
+            var CreateProteinsRow;
+            var CreateFatRow;
+            var CreateCarbohydratesRow;
+            
+            data.forEach((ex) => {
+                createTr = document.createElement("TR"); // Create a <li> node
+                CreateNameRow = document.createElement("TD");
+                CreateProteinsRow = document.createElement("TD");
+                CreateFatRow = document.createElement("TD");
+                CreateCarbohydratesRow = document.createElement("TD");
+
+                CreateNameRow.setAttribute("id", ex.Name);
+                CreateProteinsRow.setAttribute("id", ex.Proteins);
+                CreateFatRow.setAttribute("id", ex.Fat);
+                CreateCarbohydratesRow.setAttribute("id", ex.Carbohydrates);
+
+                // CreateNameRow.setAttribute("class", "name");
+                // CreateProteinsRow.setAttribute("class", "choosedOption");
+                // CreateFatRow.setAttribute("class", "choosedOption");
+                // CreateCarbohydratesRow.setAttribute("class", "choosedOption");
+
+                TextForNameRow = document.createTextNode(ex.Name);
+                TextForProteinsRow = document.createTextNode(ex.Proteins);
+                TextForFatRow = document.createTextNode(ex.Fat);
+                TextForCarbohydratesRow = document.createTextNode(ex.Carbohydrates);
+
+                CreateNameRow.appendChild(TextForNameRow);
+                CreateProteinsRow.appendChild(TextForProteinsRow);
+                CreateFatRow.appendChild(TextForFatRow);
+                CreateCarbohydratesRow.appendChild(TextForCarbohydratesRow);
+                getTable.appendChild(createTr);
+                getTable.appendChild(CreateNameRow);
+                getTable.appendChild(CreateProteinsRow);
+                getTable.appendChild(CreateFatRow);
+                getTable.appendChild(CreateCarbohydratesRow);
+
+            });
+        }
+
+
+        function addNewProduct() {
+            getAddProductButton = document.querySelector("addNewProduct");
+            getTable = document.getElementById("breakfast");
+            getOptions = document.getElementById("productSelect");
+            
+            var user = firebase.auth().currentUser;
+            let id = Timestamp();
+            var database = firebase.database();
+            
+            
+            choosedOption = getOptions.options[getOptions.selectedIndex].text;
+            var str;
+            str = choosedOption.split("-"); 
+            var Name = str[0];
+            var Proteins = str[1];
+            var Fat = str[2];
+            var Carbohydrates = str[3];
+            // document.write(str);
+            createTableR = document.createElement("tr");
+            createTableD1 = document.createElement("td");
+            createTableD2 = document.createElement("td");
+            createTableD3 = document.createElement("td");
+            createTableD4 = document.createElement("td");
+
+            sampleProductName = document.createTextNode(str[0]);
+
+            sampleProductMacro1 = document.createTextNode(Proteins);
+            sampleProductMacro2 = document.createTextNode(Fat);
+            sampleProductMacro3 = document.createTextNode(Carbohydrates);
+
+            getTable.appendChild(createTableR);
+            createTableR.appendChild(createTableD1);
+            createTableR.appendChild(createTableD2);
+            createTableR.appendChild(createTableD3);
+            createTableR.appendChild(createTableD4);
+            createTableD1.appendChild(sampleProductName);
+            createTableD2.appendChild(sampleProductMacro1);
+            createTableD3.appendChild(sampleProductMacro2);
+            createTableD4.appendChild(sampleProductMacro3);
+
+
+
+            firebase.auth().onAuthStateChanged((user) => {
+                if (user) {
+                    // User logged in already or has just logged in.
+                    user_id = user.uid;
+                    firebase
+                    .database()
+                    .ref("users/" + user_id + "/breakfast")
+                    .update({
+                        [id]: {
+                            Name: Name,
+                            Proteins : Proteins,
+                            Fat: Fat,
+                            Carbohydrates : Carbohydrates
+                        },
+                    });
+                }
+            });
+        }
+    </script>
 </body>
 
 </html>
