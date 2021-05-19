@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TrainingApp - MP & PM</title>
+  <link href="../styles/registerMenuStyle.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;700&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+  <div class="background">
+    <div class="bg"></div>
+    <header>
+      <h1>TrainingApp</h1>
+    </header>
+    <main>
+      <nav>
+        <div class="menu" id="loginSection">
+          <a href="../index.html">
+            <p class="loginMenu">Zaloguj się</p>
+          </a>
+          <a href="registerMenu.html">
+            <p class="registerMenu">Rejestracja</p>
+          </a>
+        </div>
+      </nav>
+      <div id="accountContent">
+        <form id="registerForm">
+          <input type="text" id="mail" placeholder="E-mail">
+          <input type="text" id="name" placeholder="Imie">
+          <input type="text" id="secondName" placeholder="Nazwisko">
+          <input type="password" id="password1" placeholder="Hasło">
+          <input type="password" id="password2" placeholder="Powtórz hasło">
+        </form>
+        <div id="errorBox"></div>
+        <button onclick="handleSignUp()">Zarejestruj się!</button>
+      </div>
+    </main>
+  </div>
+  <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
+
+  <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-app.js"></script>
+
+  <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+  <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-analytics.js"></script>
+
+  <script defer src="https://www.gstatic.com/firebasejs/8.4.1/firebase-auth.js"></script>
+
+  <script defer src="https://www.gstatic.com/firebasejs/8.4.1/firebase-database.js"></script>
+
+
+
+  <script src="../scripts/firebase-config.js"></script>
+
+  <script>
+    console.log(firebase.app());
+
+
+    function handleSignUp() {
+      var database = firebase.database();
+      let inputEmail = document.getElementById("mail").value;
+      let name = document.getElementById("name").value;
+      let secondName = document.getElementById("secondName").value;
+      let inputPassword1 = document.getElementById("password1").value;
+      let inputPassword2 = document.getElementById("password2").value;
+      getErrorBox = document.getElementById("errorBox");
+      if(inputEmail == "" || name == "" || secondName == "" || inputPassword1 == "" ||
+        inputPassword2 == ""){
+          window.alert("Należy uzupełnić wszystkie pola !");
+      }else{
+        if (inputPassword1 == inputPassword2) {
+          firebase
+            .auth()
+            .createUserWithEmailAndPassword(inputEmail, inputPassword1)
+            .then((result) => {
+              firebase
+                .database()
+                .ref("/users/" + result.user.uid + "/userInfo")
+                .set({
+                  mail: inputEmail,
+                  name: name,
+                  secondName: secondName,
+                  sex: "",
+                  height: "",
+                  weight: "",
+                  dateOfBirth: "",
+                  goal: "",
+                  activityCoefficient: "",
+
+                })
+                .then(() => {
+                  console.log("User account created & signed in!");
+                  getErrorBox.innerHTML = "";
+                  location.href = "../index.html";
+                });
+            })
+            .catch((error) => {
+              if (error.code === "auth/email-already-in-use") {
+                console.log("That email address is already in use!");
+                error = "Ten adres email jest już użyty, prosze podac inny !";
+                // setStatus("Ten adres jest już użyty, proszę podać inny !");
+              }
+
+              if (error.code === "auth/invalid-email") {
+                console.log("That email address is invalid!");
+                error = "Ten adres email jest błędny !";
+              }
+              console.error(error);
+              getErrorBox.innerHTML=error;
+            });
+        } else {
+          getErrorBox.innerHTML = "Hasła są niepoprawne";
+        }
+      }
+    }
+
+    var getPassword = document.getElementById("password1");
+      getPassword.addEventListener("keyup", function () {
+          checkpassword(getPassword);
+
+      })
+      var getErrorBox = document.getElementById("errorBox");
+
+      function checkpassword(password) {
+          if ((password.value).length < 6) {
+              getErrorBox.innerHTML = "Hasło jest za krótkie!";
+          } else {
+              getErrorBox.innerHTML = "";
+          }
+      }
+    
+
+
+
+
+
+  </script>
+</body>
+
+</html>

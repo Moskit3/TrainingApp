@@ -45,9 +45,7 @@
                 "" +
                 id.getMinutes() +
                 "" +
-                id.getSeconds()+
-                ""+
-                id.getMilliseconds();
+                id.getSeconds();
             return id;
         }
 
@@ -70,19 +68,10 @@
             month=today.getMonth()+1;
             year=today.getFullYear();
 
-            checkDate = year + "-" + month + "-" + day;
-            date.innerHTML = day + "-" + month + "-" + year;
-    
-            console.log("Czy to działa ?");
+            checkDate = day + "-" + month + "-" + year;
+            date.innerHTML = checkDate; 
+            console.log(day);
             showDayFromDatabase(checkDate);  
-            
-
-            today_day=today.getDate();
-            today_month=today.getMonth()+1;
-            today_year=today.getFullYear();   
-
-            today_data = today_day + "-" + today_month + "-" + today_year;
-            
         }
 
         function dayBefore(){
@@ -190,12 +179,10 @@
                 }
             }
 
-            checkDate = year + "-" + month + "-" + day;
+            checkDate = day + "-" + month + "-" + year;
 
             console.log("dayBefore " + checkDate);
-
-            yesterday.innerHTML = day + "-" + month + "-" + year;
-
+            yesterday.innerHTML = checkDate;
             showDayFromDatabase(checkDate);
         }
 
@@ -308,14 +295,13 @@
                 }
             }
 
-            checkDate = year + "-" + month + "-" + day;
+            checkDate = day + "-" + month + "-" + year;
             console.log(checkDate);
-            tomorrow.innerHTML = day + "-" + month + "-" + year;
+            tomorrow.innerHTML = checkDate;
             showDayFromDatabase(checkDate);
         }
 
         function showDayFromDatabase(checkDate){
-            console.log("showDayFromDatabase " + checkDate);
             firebase.auth().onAuthStateChanged((user) => {
                 if (user) {
                     // User logged in already or has just logged in.
@@ -324,9 +310,9 @@
                     dbRef.child("users").child(user_id).child("Date").get().then((snapshot) => {
                         if (snapshot.exists()) {
                             data = Object.keys(snapshot.val());
-                            console.log(data);
-                            compareDate(data,checkDate);
+                            // console.log("showDayFromDatabase " + data);
                             showAllProductsFromDatabase(); 
+                            compareDate(data,checkDate);
                         } else {
                             console.log("No data available");
                         }
@@ -338,67 +324,24 @@
                 }
             });
         }
-        function compareDate(data, checkDate){
 
-            console.log("compareDate " + checkDate);
-            console.log(data);
+        function compareDate(data, checkDate){
 
             var database = firebase.database();
             var user = firebase.auth().currentUser;
             var i = 0;
-            var visibilityOptions1 = document.getElementById("tableFooter1");
-            var visibilityOptions2 = document.getElementById("tableFooter2");
-            var visibilityOptions3 = document.getElementById("tableFooter3");
-            var visibilityOptions4 = document.getElementById("tableFooter4");
-
-            // console.log("day: " + day + "\n");
-            // console.log("month:  " + month + "\n");
-            // console.log("year: " + year + "\n");
-            // console.log("today_day: " + today_day + "\n");
-            // console.log("today_month: " + today_month + "\n");
-            // console.log("today_year: " + today_year + "\n");
-        
-
-            if(year<today_year){
-                visibilityOptions1.className = "hidden";
-                visibilityOptions2.className = "hidden";
-                visibilityOptions3.className = "hidden";
-                visibilityOptions4.className = "hidden";
-            }else if(today_year<year){
-                visibilityOptions1.className = "visible";
-            }else{
-                if(month<today_month){
-                    visibilityOptions1.className = "hidden";
-                    visibilityOptions2.className = "hidden";
-                    visibilityOptions3.className = "hidden";
-                    visibilityOptions4.className = "hidden";
-                }else if(month>today_month){
-                    visibilityOptions1.className = "visible";
-                }else{
-                    if(day<today_day){
-                        visibilityOptions1.className = "hidden";
-                        visibilityOptions2.className = "hidden";
-                        visibilityOptions3.className = "hidden";
-                        visibilityOptions4.className = "hidden";
-                    }else{
-                        visibilityOptions1.className = "visible";
-                        visibilityOptions2.className = "visible";
-                        visibilityOptions3.className = "visible";
-                        visibilityOptions4.className = "visible";
-                    }
-                }
-            }
+            console.log("CompareDate " + checkDate + "\n")
             
             data.forEach((ex) => {
                 // console.log(data);
                 dateInDatabase=data[i];
-                // console.log(data[i]);
                 if(checkDate==dateInDatabase){
                     
                     showBreakfast(checkDate); 
                     showSecondBreakfast(checkDate); 
                     showDinner(checkDate); 
                     showSupper(checkDate);
+                    // console.log("Tutaj reszta kodu XD");
                 }
                 i++;
             });
@@ -567,7 +510,6 @@
             var user = firebase.auth.currentUser;
             var meals = "breakfast";
 
-            console.log("showBreakfast " + date);
             firebase.auth().onAuthStateChanged((user) => {
                 if (user) {
                     user_id = user.uid;
@@ -594,7 +536,6 @@
             var user = firebase.auth.currentUser;
             var meals ="secondBreakfast";
 
-            console.log("secondBreakfast " + date);
             firebase.auth().onAuthStateChanged((user) => {
                 if (user) {
                     user_id = user.uid;
@@ -621,7 +562,6 @@
             var user = firebase.auth.currentUser;
             var meals = "dinner";
 
-            console.log("dinner " + date);
             firebase.auth().onAuthStateChanged((user) => {
                 if (user) {
                     user_id = user.uid;
@@ -648,7 +588,6 @@
             var user = firebase.auth.currentUser;
             var meals = "supper";
 
-            console.log("supper " + date);
             firebase.auth().onAuthStateChanged((user) => {
                 if (user) {
                     user_id = user.uid;
@@ -764,7 +703,7 @@
             var createTr;
             var CreateNameRow;
             var CreateProteinsRow;
-            var CreateFatRow;
+            var CreateFatRow ;
             var CreateCarbohydratesRow;
 
             data.forEach((ex) => {
@@ -774,7 +713,7 @@
                 CreateFatRow = document.createElement("TD");
                 CreateCarbohydratesRow = document.createElement("TD");
                 var span = document.createElement("SPAN");
-
+                
                 createTr.setAttribute("id", ex.Id);
                 CreateNameRow.setAttribute("id", ex.Name);
                 CreateProteinsRow.setAttribute("id", ex.Proteins);
@@ -791,25 +730,8 @@
                 TextForFatRow = document.createTextNode(ex.Fat);
                 TextForCarbohydratesRow = document.createTextNode(ex.Carbohydrates);
                 var txt = document.createTextNode("\u00D7");
+                span.className = "close";
 
-                if(year<today_year){
-                    span.className = "none";
-                }else if(year>today_year){
-                    span.className = "close";
-                }else{
-                    if(month<today_month){
-                        span.className = "none";
-                    }else if(month>today_month){
-                        span.className = "close";
-                    }else{
-                        if(day<today_day){
-                            span.className = "none";
-                        }else{
-                            span.className = "close";
-                        }
-                    }
-                }
-                
                 CreateNameRow.appendChild(TextForNameRow);
                 CreateProteinsRow.appendChild(TextForProteinsRow);
                 CreateFatRow.appendChild(TextForFatRow);
@@ -826,7 +748,6 @@
             });
         }
 
-
         function addNewProduct(meals, meals2) {
             getAddProductButton = document.querySelector("addNewProduct");
             getTable = document.getElementById(meals);
@@ -835,7 +756,7 @@
             // console.log("addNewProduct " + month);
             // console.log("addNewProduct " + year);
             
-            actualDay = year + "-" + month + "-" +day ;
+            actualDay = day + "-" + month + "-" + year;
 
             // console.log(actualDay);
 
@@ -912,17 +833,16 @@
         }
 
         function deleteToDo(el, id, meals) {
-        
-            thisDate = year + "-" + month + "-" +day ;
-
+            // element i jego ID
             el.addEventListener("click", (e) => {
-                var meals_id = e.target.parentNode.id;
+                var todo_id = e.target.parentNode.id;
+                console.log(id);
+                console.log(meals)
                 firebase
                     .database()
-                    .ref("users/" + user_id + "/Date/" + thisDate + "/" + meals + "/" + meals_id)                    
+                    .ref("users/" + user_id + "/Date/" + checkDate + "/" + meals + "/" + id)
                     .remove()
                     .then(() => {
-                        console.log("KURWA " + thisDate);
                         e.target.parentNode.remove();
                     })
                     .catch((error) => {
@@ -993,7 +913,7 @@
                                 <table class="table" id="breakfast">
                                 </table>
                             </div>
-                            <div id="tableFooter1" class="visible">
+                            <div id="tableFooter">
                                 <!-- <div class="boxContent" id="boxContent"></div> -->
                                 <select id="breakfast1" name="products">
 
@@ -1014,7 +934,7 @@
                                 <table class="table" id="secondBreakfast">
                                 </table>
                             </div>
-                            <div id="tableFooter2" class="visible">
+                            <div id="tableFooter">
                                 <!-- <div class="boxContent" id="boxContent"></div> -->
                                 <select id="secondBreakfast2" name="products">
 
@@ -1035,7 +955,7 @@
                                 <table class="table" id="dinner">
                                 </table>
                             </div>
-                            <div id="tableFooter3" class="visible">
+                            <div id="tableFooter">
                                 <!-- <div class="boxContent" id="boxContent"></div> -->
                                 <select id="dinner3" name="products">
 
@@ -1056,7 +976,7 @@
                                 <table class="table" id="supper">
                                 </table>
                             </div>
-                            <div id="tableFooter4" class="visible">
+                            <div id="tableFooter">
                                 <!-- <div class="boxContent" id="boxContent"></div> -->
                                 <select id="supper4" name="products">
                                 </select>

@@ -184,18 +184,6 @@ main>table {
     color: white;
 }
 
-main>footer {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 5vh;
-    line-height: 5vh;
-    text-align: center;
-}
-
-
-
 /* Nagłówek z datą */
 th:first-child {
     background-color: rgba(42, 43, 43, 0.8);
@@ -262,22 +250,15 @@ td:nth-child(2) {
     align-items: center;
 
 }
-
-.workoutBox input{
+#workoutSeries input{
     color: white;
     border: none;
     background-color: rgba(74, 88, 89, 0.5);
 }
 
-
-/* input{
-    background-color: rgba(74, 88, 89, 0.5);
-} */
-
-.workoutBox input::placeholder{
+#workoutSeries input::placeholder{
     color: white;
 }
-
 
 /* Kolumna 3 z przyciskiem dodaj boxa */
 td:nth-child(3) {
@@ -295,33 +276,3 @@ td:nth-child(3) {
     background-color: #454545;
     color: white;
 }
-
-/* footer */
-
-footer input{
-    color: white;
-    background-color: rgba(74, 88, 89, 0.5);
-    border: none;
-    padding:0vw 1vw;
-}
-
-footer input::placeholder{
-    border-radius: 2vw;
-    color: white;
-}
-
-footer button{
-    border: none;
-    background-color: #C83E4D;
-    border-radius: 2vw;
-    padding:0vw 1vw;
-    color: white;
-}
-
-footer button:hover{
-    background-color: #a52534;
-}
-footer button:active{
-    background-color: #da1e34;
-}
-
