@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,7 +14,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap" rel="stylesheet">
 
-       
+
     <!-- <script src="../scripts/mymodal.js"></script> -->
     <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-app.js"></script>
     <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
@@ -25,7 +26,7 @@
 
 
 
-    <script>       
+    <script>
         var today;
         var day;
         var month;
@@ -45,8 +46,8 @@
                 "" +
                 id.getMinutes() +
                 "" +
-                id.getSeconds()+
-                ""+
+                id.getSeconds() +
+                "" +
                 id.getMilliseconds();
             return id;
         }
@@ -62,131 +63,132 @@
         //     return saveThisDate = day + "-" + month + "-" + year;
         // }
 
-        function actualdate(){
+        function actualdate() {
             var checkDate;
             today = new Date();
             var date = document.getElementById("today");
-            day=today.getDate();
-            month=today.getMonth()+1;
-            year=today.getFullYear();
+            day = today.getDate();
+            month = today.getMonth() + 1;
+            year = today.getFullYear();
 
             checkDate = year + "-" + month + "-" + day;
             date.innerHTML = day + "-" + month + "-" + year;
-    
-            console.log("Czy to działa ?");
-            showDayFromDatabase(checkDate);  
-            
 
-            today_day=today.getDate();
-            today_month=today.getMonth()+1;
-            today_year=today.getFullYear();   
+            console.log("Czy to działa ?");
+            showDayFromDatabase(checkDate);
+            showTotalSummary(checkDate);
+
+
+            today_day = today.getDate();
+            today_month = today.getMonth() + 1;
+            today_year = today.getFullYear();
 
             today_data = today_day + "-" + today_month + "-" + today_year;
-            
+
         }
 
-        function dayBefore(){
+        function dayBefore() {
             var yesterday = document.getElementById("today");
-        
-            if(month==1){
-                if(day==1){
-                    month=12;
-                    day=31;
-                    year=year-1;
-                }else{
-                    day=day-1;
+
+            if (month == 1) {
+                if (day == 1) {
+                    month = 12;
+                    day = 31;
+                    year = year - 1;
+                } else {
+                    day = day - 1;
                 }
-            }else if(month==2){
-                if(day==1){
-                    month=1;
-                    day=31;
-                }else{
-                    day=day-1;
+            } else if (month == 2) {
+                if (day == 1) {
+                    month = 1;
+                    day = 31;
+                } else {
+                    day = day - 1;
                 }
 
-            }else if(month==3){
-                if(day==1){
-                    if(year%4==0){
-                        month=2;
-                        day=29; 
-                    }else{
-                        month=2;
-                        day=28; 
+            } else if (month == 3) {
+                if (day == 1) {
+                    if (year % 4 == 0) {
+                        month = 2;
+                        day = 29;
+                    } else {
+                        month = 2;
+                        day = 28;
                     }
-                }else{
-                    day=day-1;
+                } else {
+                    day = day - 1;
                 }
 
-            }else if(month==4){
-                if(day==1){
-                    month=3;
-                    day=31;
-                }else{
-                    day=day-1;
+            } else if (month == 4) {
+                if (day == 1) {
+                    month = 3;
+                    day = 31;
+                } else {
+                    day = day - 1;
                 }
 
-            }else if(month==5){
-                if(day==1){
-                    month=4;
-                    day=30;
-                }else{
-                    day=day-1;
+            } else if (month == 5) {
+                if (day == 1) {
+                    month = 4;
+                    day = 30;
+                } else {
+                    day = day - 1;
                 }
 
-            }else if(month==6){
-                if(day==1){
-                    month=5;
-                    day=31;
-                }else{
-                    day=day-1;
+            } else if (month == 6) {
+                if (day == 1) {
+                    month = 5;
+                    day = 31;
+                } else {
+                    day = day - 1;
                 }
 
-            }else if(month==7){
-                if(day==1){
-                    month=6;
-                    day=30;
-                }else{
-                    day=day-1;
+            } else if (month == 7) {
+                if (day == 1) {
+                    month = 6;
+                    day = 30;
+                } else {
+                    day = day - 1;
                 }
 
-            }else if(month==8){
-                if(day==1){
-                    month=7;
-                    day=31;
-                }else{
-                    day=day-1;
+            } else if (month == 8) {
+                if (day == 1) {
+                    month = 7;
+                    day = 31;
+                } else {
+                    day = day - 1;
                 }
 
-            }else if(month==9){
-                if(day==1){
-                    month=8;
-                    day=31;
-                }else{
-                    day=day-1;
+            } else if (month == 9) {
+                if (day == 1) {
+                    month = 8;
+                    day = 31;
+                } else {
+                    day = day - 1;
                 }
 
-            }else if(month==10){
-                if(day==1){
-                    month=9;
-                    day=30;
-                }else{
-                    day=day-1;
+            } else if (month == 10) {
+                if (day == 1) {
+                    month = 9;
+                    day = 30;
+                } else {
+                    day = day - 1;
                 }
 
-            }else if(month==11){
-                if(day==1){
-                    month=10;
-                    day=31;
-                }else{
-                    day=day-1;
+            } else if (month == 11) {
+                if (day == 1) {
+                    month = 10;
+                    day = 31;
+                } else {
+                    day = day - 1;
                 }
 
-            }else if(month==12){
-                if(day==1){
-                    month=11;
-                    day=30;
-                }else{
-                    day=day-1;
+            } else if (month == 12) {
+                if (day == 1) {
+                    month = 11;
+                    day = 30;
+                } else {
+                    day = day - 1;
                 }
             }
 
@@ -199,112 +201,111 @@
             showDayFromDatabase(checkDate);
         }
 
-        function dayAfter(){
+        function dayAfter() {
             var tomorrow = document.getElementById("today");
 
-            if(month==1){
-                if(day==31){
-                    month=2;
-                    day=1;
-                }else{
-                    day=day+1;
+            if (month == 1) {
+                if (day == 31) {
+                    month = 2;
+                    day = 1;
+                } else {
+                    day = day + 1;
                 }
-            }else if(month==2){
-                if(year%4==0){
-                    if(day==29){
-                        month=3;
-                        day=1;
-                    }else{
-                        day=day+1;
+            } else if (month == 2) {
+                if (year % 4 == 0) {
+                    if (day == 29) {
+                        month = 3;
+                        day = 1;
+                    } else {
+                        day = day + 1;
                     }
-                }else{
-                    if(day==28){
-                        month=3;
-                        day=1;
+                } else {
+                    if (day == 28) {
+                        month = 3;
+                        day = 1;
+                    } else {
+                        day = day + 1;
                     }
-                    else{
-                        day=day+1;
-                    }
                 }
-            }else if(month==3){
-                if(day==31){
-                    month=4;
-                    day=1;
-                }else{
-                    day=day+1;
+            } else if (month == 3) {
+                if (day == 31) {
+                    month = 4;
+                    day = 1;
+                } else {
+                    day = day + 1;
                 }
 
-            }else if(month==4){
-                if(day==30){
-                    month=5;
-                    day=1;
-                }else{
-                    day=day+1;
+            } else if (month == 4) {
+                if (day == 30) {
+                    month = 5;
+                    day = 1;
+                } else {
+                    day = day + 1;
                 }
 
-            }else if(month==5){
-                if(day==31){
-                    month=6;
-                    day=1;
-                }else{
-                    day=day+1;
+            } else if (month == 5) {
+                if (day == 31) {
+                    month = 6;
+                    day = 1;
+                } else {
+                    day = day + 1;
                 }
 
-            }else if(month==6){
-                if(day==30){
-                    month=7;
-                    day=1;
-                }else{
-                    day=day+1;
+            } else if (month == 6) {
+                if (day == 30) {
+                    month = 7;
+                    day = 1;
+                } else {
+                    day = day + 1;
                 }
 
-            }else if(month==7){
-                if(day==31){
-                    month=8;
-                    day=1;
-                }else{
-                    day=day+1;
+            } else if (month == 7) {
+                if (day == 31) {
+                    month = 8;
+                    day = 1;
+                } else {
+                    day = day + 1;
                 }
 
-            }else if(month==8){
-                if(day==31){
-                    month=9;
-                    day=1;
-                }else{
-                    day=day+1;
+            } else if (month == 8) {
+                if (day == 31) {
+                    month = 9;
+                    day = 1;
+                } else {
+                    day = day + 1;
                 }
 
-            }else if(month==9){
-                if(day==30){
-                    month=10;
-                    day=1;
-                }else{
-                    day=day+1;
+            } else if (month == 9) {
+                if (day == 30) {
+                    month = 10;
+                    day = 1;
+                } else {
+                    day = day + 1;
                 }
 
-            }else if(month==10){
-                if(day==31){
-                    month=11;
-                    day=1;
-                }else{
-                    day=day+1;
+            } else if (month == 10) {
+                if (day == 31) {
+                    month = 11;
+                    day = 1;
+                } else {
+                    day = day + 1;
                 }
 
-            }else if(month==11){
-                if(day==30){
-                    month=12;
-                    day=1;
-                }else{
-                    day=day+1;
+            } else if (month == 11) {
+                if (day == 30) {
+                    month = 12;
+                    day = 1;
+                } else {
+                    day = day + 1;
                 }
 
-            }else if(month==12){
-                if(day==31){
-                    month=1;
-                    day=1;
-                    year=year+1;
-                }else{
-                    day=day+1;
+            } else if (month == 12) {
+                if (day == 31) {
+                    month = 1;
+                    day = 1;
+                    year = year + 1;
+                } else {
+                    day = day + 1;
                 }
             }
 
@@ -314,7 +315,7 @@
             showDayFromDatabase(checkDate);
         }
 
-        function showDayFromDatabase(checkDate){
+        function showDayFromDatabase(checkDate) {
             console.log("showDayFromDatabase " + checkDate);
             firebase.auth().onAuthStateChanged((user) => {
                 if (user) {
@@ -325,8 +326,8 @@
                         if (snapshot.exists()) {
                             data = Object.keys(snapshot.val());
                             console.log(data);
-                            compareDate(data,checkDate);
-                            showAllProductsFromDatabase(); 
+                            compareDate(data, checkDate);
+                            showAllProductsFromDatabase();
                         } else {
                             console.log("No data available");
                         }
@@ -338,7 +339,8 @@
                 }
             });
         }
-        function compareDate(data, checkDate){
+
+        function compareDate(data, checkDate) {
 
             console.log("compareDate " + checkDate);
             console.log(data);
@@ -357,30 +359,30 @@
             // console.log("today_day: " + today_day + "\n");
             // console.log("today_month: " + today_month + "\n");
             // console.log("today_year: " + today_year + "\n");
-        
 
-            if(year<today_year){
+
+            if (year < today_year) {
                 visibilityOptions1.className = "hidden";
                 visibilityOptions2.className = "hidden";
                 visibilityOptions3.className = "hidden";
                 visibilityOptions4.className = "hidden";
-            }else if(today_year<year){
+            } else if (today_year < year) {
                 visibilityOptions1.className = "visible";
-            }else{
-                if(month<today_month){
+            } else {
+                if (month < today_month) {
                     visibilityOptions1.className = "hidden";
                     visibilityOptions2.className = "hidden";
                     visibilityOptions3.className = "hidden";
                     visibilityOptions4.className = "hidden";
-                }else if(month>today_month){
+                } else if (month > today_month) {
                     visibilityOptions1.className = "visible";
-                }else{
-                    if(day<today_day){
+                } else {
+                    if (day < today_day) {
                         visibilityOptions1.className = "hidden";
                         visibilityOptions2.className = "hidden";
                         visibilityOptions3.className = "hidden";
                         visibilityOptions4.className = "hidden";
-                    }else{
+                    } else {
                         visibilityOptions1.className = "visible";
                         visibilityOptions2.className = "visible";
                         visibilityOptions3.className = "visible";
@@ -388,16 +390,16 @@
                     }
                 }
             }
-            
+
             data.forEach((ex) => {
                 // console.log(data);
-                dateInDatabase=data[i];
+                dateInDatabase = data[i];
                 // console.log(data[i]);
-                if(checkDate==dateInDatabase){
-                    
-                    showBreakfast(checkDate); 
-                    showSecondBreakfast(checkDate); 
-                    showDinner(checkDate); 
+                if (checkDate == dateInDatabase) {
+
+                    showBreakfast(checkDate);
+                    showSecondBreakfast(checkDate);
+                    showDinner(checkDate);
                     showSupper(checkDate);
                 }
                 i++;
@@ -433,14 +435,14 @@
             var table;
 
             var box = document.getElementById("breakfast1");
-           
+
             data.forEach((ex) => {
                 Name = ex.Name;
                 Fat = ex.Fat;
                 Carbohydrates = ex.Carbohydrates;
                 Proteins = ex.Proteins;
                 Id = ex.Id
- 
+
                 var container = document.createElement("option");
 
                 box.appendChild(container);
@@ -466,14 +468,14 @@
             var table;
 
             var box = document.getElementById("secondBreakfast2");
-           
+
             data.forEach((ex) => {
                 Name = ex.Name;
                 Fat = ex.Fat;
                 Carbohydrates = ex.Carbohydrates;
                 Proteins = ex.Proteins;
                 Id = ex.Id
- 
+
                 var container = document.createElement("option");
 
                 box.appendChild(container);
@@ -499,14 +501,14 @@
             var table;
 
             var box = document.getElementById("dinner3");
-           
+
             data.forEach((ex) => {
                 Name = ex.Name;
                 Fat = ex.Fat;
                 Carbohydrates = ex.Carbohydrates;
                 Proteins = ex.Proteins;
                 Id = ex.Id
- 
+
                 var container = document.createElement("option");
 
                 box.appendChild(container);
@@ -532,7 +534,7 @@
             var table;
 
             var box = document.getElementById("supper4");
-           
+
             data.forEach((ex) => {
                 Name = ex.Name;
                 Fat = ex.Fat;
@@ -543,7 +545,7 @@
                 // console.log("DUPA DEBUGING");
                 // console.log(Name);
                 // console.log(ex.Name);
- 
+
                 var container = document.createElement("option");
 
                 box.appendChild(container);
@@ -572,15 +574,16 @@
                 if (user) {
                     user_id = user.uid;
                     const dbRef = firebase.database().ref();
-                    dbRef.child("users").child(user_id).child("Date").child(date).child("breakfast").get().then((snapshot) => {
-                        if (snapshot.exists()) {
-                            breakfast = Object.values(snapshot.val());
-                            addItemsTable(meals, breakfast);
-                            // countEatenThings(breakfast)
-                        } else {
-                            console.log("No data available");
-                        }
-                    }).catch((error) => {
+                    dbRef.child("users").child(user_id).child("Date").child(date).child("breakfast").get().then(
+                        (snapshot) => {
+                            if (snapshot.exists()) {
+                                breakfast = Object.values(snapshot.val());
+                                addItemsTable(meals, breakfast);
+                                // countEatenThings(breakfast)
+                            } else {
+                                console.log("No data available");
+                            }
+                        }).catch((error) => {
                         console.error(error);
                     });
                 } else {
@@ -592,24 +595,25 @@
         function showSecondBreakfast(date) {
             var database = firebase.database();
             var user = firebase.auth.currentUser;
-            var meals ="secondBreakfast";
+            var meals = "secondBreakfast";
 
             console.log("secondBreakfast " + date);
             firebase.auth().onAuthStateChanged((user) => {
                 if (user) {
                     user_id = user.uid;
                     const dbRef = firebase.database().ref();
-                    dbRef.child("users").child(user_id).child("Date").child(date).child("secondBreakfast").get().then((snapshot) => {
-                        if (snapshot.exists()) {
-                            secondBreakfast = Object.values(snapshot.val());
-                            addItemsTable(meals, secondBreakfast);
-                            // countEatenThings(secondBreakfast)
-                        } else {
-                            console.log("No data available");
-                        }
-                    }).catch((error) => {
-                        console.error(error);
-                    });
+                    dbRef.child("users").child(user_id).child("Date").child(date).child("secondBreakfast").get()
+                        .then((snapshot) => {
+                            if (snapshot.exists()) {
+                                secondBreakfast = Object.values(snapshot.val());
+                                addItemsTable(meals, secondBreakfast);
+                                // countEatenThings(secondBreakfast)
+                            } else {
+                                console.log("No data available");
+                            }
+                        }).catch((error) => {
+                            console.error(error);
+                        });
                 } else {
                     console.log("uzytkownik niezalogowany");
                 }
@@ -626,12 +630,13 @@
                 if (user) {
                     user_id = user.uid;
                     const dbRef = firebase.database().ref();
-                    dbRef.child("users").child(user_id).child("Date").child(date).child("dinner").get().then((snapshot) => {
+                    dbRef.child("users").child(user_id).child("Date").child(date).child("dinner").get().then((
+                        snapshot) => {
                         if (snapshot.exists()) {
                             dinner = Object.values(snapshot.val());
                             addItemsTable(meals, dinner);
                             // countEatenThings(dinner)
-                        }else {
+                        } else {
                             console.log("No data available");
                         }
                     }).catch((error) => {
@@ -653,7 +658,8 @@
                 if (user) {
                     user_id = user.uid;
                     const dbRef = firebase.database().ref();
-                    dbRef.child("users").child(user_id).child("Date").child(date).child("supper").get().then((snapshot) => {
+                    dbRef.child("users").child(user_id).child("Date").child(date).child("supper").get().then((
+                        snapshot) => {
                         if (snapshot.exists()) {
                             supper = Object.values(snapshot.val());
                             addItemsTable(meals, supper);
@@ -670,7 +676,7 @@
             });
         }
 
-        function dynamicDeleteBefore(){
+        function dynamicDeleteBefore() {
             var Parent1 = document.getElementById("breakfast");
             var Parent2 = document.getElementById("secondBreakfast");
             var Parent3 = document.getElementById("dinner");
@@ -682,37 +688,37 @@
             var Parent9 = document.getElementById("demands")
 
 
-            while(Parent1.hasChildNodes()){
+            while (Parent1.hasChildNodes()) {
                 Parent1.removeChild(Parent1.firstChild);
             }
-            while(Parent2.hasChildNodes()){
+            while (Parent2.hasChildNodes()) {
                 Parent2.removeChild(Parent2.firstChild);
             }
-            while(Parent3.hasChildNodes()){
+            while (Parent3.hasChildNodes()) {
                 Parent3.removeChild(Parent3.firstChild);
             }
-            while(Parent4.hasChildNodes()){
+            while (Parent4.hasChildNodes()) {
                 Parent4.removeChild(Parent4.firstChild);
             }
-            while(Parent5.hasChildNodes()){
+            while (Parent5.hasChildNodes()) {
                 Parent5.removeChild(Parent5.firstChild);
             }
-            while(Parent6.hasChildNodes()){
+            while (Parent6.hasChildNodes()) {
                 Parent6.removeChild(Parent6.firstChild);
             }
-            while(Parent7.hasChildNodes()){
+            while (Parent7.hasChildNodes()) {
                 Parent7.removeChild(Parent7.firstChild);
             }
-            while(Parent8.hasChildNodes()){
+            while (Parent8.hasChildNodes()) {
                 Parent8.removeChild(Parent8.firstChild);
             }
-            while(Parent9.hasChildNodes()){
+            while (Parent9.hasChildNodes()) {
                 Parent9.removeChild(Parent9.firstChild);
             }
             dayBefore();
         }
-        
-        function dynamicDeleteAfter(){
+
+        function dynamicDeleteAfter() {
             var Parent1 = document.getElementById("breakfast");
             var Parent2 = document.getElementById("secondBreakfast");
             var Parent3 = document.getElementById("dinner");
@@ -725,31 +731,31 @@
 
 
 
-            while(Parent1.hasChildNodes()){
+            while (Parent1.hasChildNodes()) {
                 Parent1.removeChild(Parent1.firstChild);
             }
-            while(Parent2.hasChildNodes()){
+            while (Parent2.hasChildNodes()) {
                 Parent2.removeChild(Parent2.firstChild);
             }
-            while(Parent3.hasChildNodes()){
+            while (Parent3.hasChildNodes()) {
                 Parent3.removeChild(Parent3.firstChild);
             }
-            while(Parent4.hasChildNodes()){
+            while (Parent4.hasChildNodes()) {
                 Parent4.removeChild(Parent4.firstChild);
             }
-            while(Parent5.hasChildNodes()){
+            while (Parent5.hasChildNodes()) {
                 Parent5.removeChild(Parent5.firstChild);
             }
-            while(Parent6.hasChildNodes()){
+            while (Parent6.hasChildNodes()) {
                 Parent6.removeChild(Parent6.firstChild);
             }
-            while(Parent7.hasChildNodes()){
+            while (Parent7.hasChildNodes()) {
                 Parent7.removeChild(Parent7.firstChild);
             }
-            while(Parent8.hasChildNodes()){
+            while (Parent8.hasChildNodes()) {
                 Parent8.removeChild(Parent8.firstChild);
             }
-            while(Parent9.hasChildNodes()){
+            while (Parent9.hasChildNodes()) {
                 Parent9.removeChild(Parent9.firstChild);
             }
             dayAfter();
@@ -792,24 +798,24 @@
                 TextForCarbohydratesRow = document.createTextNode(ex.Carbohydrates);
                 var txt = document.createTextNode("\u00D7");
 
-                if(year<today_year){
+                if (year < today_year) {
                     span.className = "none";
-                }else if(year>today_year){
+                } else if (year > today_year) {
                     span.className = "close";
-                }else{
-                    if(month<today_month){
+                } else {
+                    if (month < today_month) {
                         span.className = "none";
-                    }else if(month>today_month){
+                    } else if (month > today_month) {
                         span.className = "close";
-                    }else{
-                        if(day<today_day){
+                    } else {
+                        if (day < today_day) {
                             span.className = "none";
-                        }else{
+                        } else {
                             span.className = "close";
                         }
                     }
                 }
-                
+
                 CreateNameRow.appendChild(TextForNameRow);
                 CreateProteinsRow.appendChild(TextForProteinsRow);
                 CreateFatRow.appendChild(TextForFatRow);
@@ -826,7 +832,6 @@
             });
         }
 
-
         function addNewProduct(meals, meals2) {
             getAddProductButton = document.querySelector("addNewProduct");
             getTable = document.getElementById(meals);
@@ -834,8 +839,8 @@
             // console.log("addNewProduct " + day);
             // console.log("addNewProduct " + month);
             // console.log("addNewProduct " + year);
-            
-            actualDay = year + "-" + month + "-" +day ;
+
+            actualDay = year + "-" + month + "-" + day;
 
             // console.log(actualDay);
 
@@ -889,8 +894,8 @@
             }
             deleteToDo(span, id, meals);
 
-            
-            
+
+
             firebase.auth().onAuthStateChanged((user) => {
                 if (user) {
                     // User logged in already or has just logged in.
@@ -909,20 +914,162 @@
                         });
                 }
             });
+
+            var database = firebase.database();
+            var user = firebase.auth.currentUser;
+            var LewoMeals = meals;
+            var SummaryFat = 0;
+            var SummaryProteins = 0;
+            var SummaryCarbohydrates = 0;
+
+            console.log(LewoMeals + actualDay);
+            firebase.auth().onAuthStateChanged((user) => {
+                if (user) {
+                    user_id = user.uid;
+                    const dbRef = firebase.database().ref();
+                    dbRef.child("users").child(user_id).child("Date").child(actualDay).child(LewoMeals).get()
+                        .then((
+                            snapshot) => {
+                            if (snapshot.exists()) {
+                                meealKeys = Object.keys(snapshot.val());
+                                meealValues = Object.values(snapshot.val());
+                                console.log(meealKeys, meealValues);
+                                for (i = 0; i < meealKeys.length; i++) {
+                                    tmp = meealValues[i];
+                                    SummaryFat += tmp.Fat * 1;
+                                    SummaryProteins += tmp.Proteins * 1;
+                                    SummaryCarbohydrates += tmp.Carbohydrates * 1;
+                                }
+                                //console.log(SummaryFat, SummaryProteins, SummaryCarbohydrates);
+                                updateSummary(SummaryFat, SummaryProteins, SummaryCarbohydrates, actualDay,
+                                    LewoMeals);
+
+                            } else {
+                                console.log("No data available");
+                            }
+                        }).catch((error) => {
+                            console.error(error);
+                        });
+                } else {
+                    console.log("uzytkownik niezalogowany");
+                }
+            });
+        }
+
+        function updateSummary(SummaryFat, SummaryProteins, SummaryCarbohydrates, actualDay, meal) {
+            firebase.auth().onAuthStateChanged((user) => {
+                if (user) {
+                    // User logged in already or has just logged in.
+                    user_id = user.uid;
+                    firebase
+                        .database()
+                        .ref("users/" + user_id + "/Date/" + actualDay + "/Summary/" + meal)
+                        .update({
+                            Proteins: SummaryProteins,
+                            Fats: SummaryFat,
+                            Carbohydrates: SummaryCarbohydrates,
+                        });
+                }
+            });
+
+            tmpTable = ["breakfast", "secondBreakfast", "dinner", "supper"];
+            var summary_Fat = 0;
+            var summary_Carbs = 0;
+            var summary_Proteins = 0;
+            tmpTable.forEach((ex) => {
+                firebase.auth().onAuthStateChanged((user) => {
+                    if (user) {
+                        user_id = user.uid;
+                        const dbRef = firebase.database().ref();
+                        dbRef.child("users").child(user_id).child("Date").child(actualDay).child(
+                                "Summary").child(ex)
+                            .get().then(
+                                (snapshot) => {
+                                    if (snapshot.exists()) {
+                                        keys = Object.keys(snapshot.val());
+                                        values = Object.values(snapshot.val());
+                                        summary_Fat += values[0];
+                                        summary_Carbs += values[1];
+                                        summary_Proteins += values[2];
+                                        setTotalSummary(summary_Fat, summary_Carbs, summary_Proteins);
+
+                                    } else {
+                                        console.log("No data available");
+                                    }
+                                }).catch((error) => {
+                                console.error(error);
+                            });
+                    } else {
+                        console.log("uzytkownik niezalogowany");
+                    }
+                });
+            });
+
+        }
+
+        function setTotalSummary(summary_Fat, summary_Carbs, summary_Proteins) {
+            firebase.auth().onAuthStateChanged((user) => {
+                if (user) {
+                    // User logged in already or has just logged in.
+                    user_id = user.uid;
+                    firebase
+                        .database()
+                        .ref("users/" + user_id + "/Date/" + actualDay + "/totalSummary/")
+                        .update({
+                            Proteins: summary_Proteins,
+                            Fats: summary_Carbs,
+                            Carbohydrates: summary_Fat,
+                        });
+                }
+            });
+        }
+
+        function showTotalSummary(date) {
+
+            geteatenCarb = document.getElementById("eatenCarb");
+            geteatenFat = document.getElementById("eatenFat");
+            geteatenProtein = document.getElementById("eatenProtein");
+
+            firebase.auth().onAuthStateChanged((user) => {
+                if (user) {
+                    user_id = user.uid;
+                    const dbRef = firebase.database().ref();
+                    dbRef.child("users").child(user_id).child("Date").child(date).child("totalSummary").get()
+                        .then((
+                            snapshot) => {
+                            if (snapshot.exists()) {
+                                meealKeys = Object.keys(snapshot.val());
+                                meealValues = Object.values(snapshot.val());
+                                console.log(meealKeys, meealValues);
+                                geteatenCarb.appendChild(document.createTextNode(meealValues[0]));
+                                geteatenFat.appendChild(document.createTextNode(meealValues[1]));
+                                geteatenProtein.appendChild(document.createTextNode(meealValues[2]));
+
+
+                            } else {
+                                console.log("No data available");
+                            }
+                        }).catch((error) => {
+                            console.error(error);
+                        });
+                } else {
+                    console.log("uzytkownik niezalogowany");
+                }
+            });
         }
 
         function deleteToDo(el, id, meals) {
-        
-            thisDate = year + "-" + month + "-" +day ;
+
+            thisDate = year + "-" + month + "-" + day;
 
             el.addEventListener("click", (e) => {
                 var meals_id = e.target.parentNode.id;
                 firebase
                     .database()
-                    .ref("users/" + user_id + "/Date/" + thisDate + "/" + meals + "/" + meals_id)                    
+                    .ref("users/" + user_id + "/Date/" + thisDate + "/" + meals + "/" + meals_id)
                     .remove()
                     .then(() => {
-                        console.log("KURWA " + thisDate);
+                        console.log(thisDate);
                         e.target.parentNode.remove();
                     })
                     .catch((error) => {
@@ -955,8 +1102,18 @@
         //     textForEatenCarbs = document.createTextNode(countEatenCarbs);
         //     getEatenCarbs[0].appendChild(textForEatenCarbs);
         // }
+        function logOut() {
+            firebase
+                .auth()
+                .signOut()
+                .then(() => {
+                    console.log("User signed out!");
+                    window.location.replace("../index.html");
+                });
+        }
     </script>
 </head>
+
 <body onload="actualdate()">
     <div class="background">
         <div class="bg"></div>
@@ -965,11 +1122,20 @@
             <span class=navIcon><a href="mainSite.html"><i class="fas fa-utensils"></i></a></span>
             <span class=navIcon><a href="workouts.html"><i class="fas fa-dumbbell"></i></a></span>
             <span class=navIcon><a href="#"><i class="fas fa-calendar-alt"></i></a></span>
-            <span class=navIcon><a href="settings.html"><i class="fas fa-cogs"></i></a></span>
+            <span class=navIcon>
+                <div class="dropdown">
+                    <button id="dropbtn" class="fas fa-cogs fa-sm"></button>
+                    <div class="dropdown-content">
+                        <a href="settings.html"><i class="fas fa-user"></i>Profil</a>
+                        <a href="#" onclick="logOut()"><i class="fas fa-sign-out-alt"></i>LOGOUT</a>
+
+                    </div>
+                </div>
+            </span>
         </nav>
         <div class="content2">
-            <button id="dateChanger"class="left" onclick="dynamicDeleteBefore()">
-                <img src="../images/left-arrow.png" width="10" height="10" alt="submit" /> 
+            <button id="dateChanger" class="left" onclick="dynamicDeleteBefore()">
+                <img src="../images/left-arrow.png" width="10" height="10" alt="submit" />
             </button>
             <div id="today"></div>
             <button id="dateChanger" class="right" onclick="dynamicDeleteAfter()">
@@ -998,7 +1164,8 @@
                                 <select id="breakfast1" name="products">
 
                                 </select>
-                                <button class="addNewProduct" onclick="addNewProduct('breakfast','breakfast1');">Dodaj</button>
+                                <button class="addNewProduct"
+                                    onclick="addNewProduct('breakfast','breakfast1');">Dodaj</button>
                             </div>
                         </div>
                         <div class="col-5" id="meals">
@@ -1019,7 +1186,8 @@
                                 <select id="secondBreakfast2" name="products">
 
                                 </select>
-                                <button class="addNewProduct" onclick="addNewProduct('secondBreakfast','secondBreakfast2');">Dodaj</button>
+                                <button class="addNewProduct"
+                                    onclick="addNewProduct('secondBreakfast','secondBreakfast2');">Dodaj</button>
                             </div>
                         </div>
                         <div class="col-5" id="meals">
@@ -1040,7 +1208,8 @@
                                 <select id="dinner3" name="products">
 
                                 </select>
-                                <button class="addNewProduct" onclick="addNewProduct('dinner','dinner3');">Dodaj</button>
+                                <button class="addNewProduct"
+                                    onclick="addNewProduct('dinner','dinner3');">Dodaj</button>
                             </div>
                         </div>
                         <div class="col-5" id="meals">
@@ -1060,7 +1229,8 @@
                                 <!-- <div class="boxContent" id="boxContent"></div> -->
                                 <select id="supper4" name="products">
                                 </select>
-                                <button class="addNewProduct" onclick="addNewProduct('supper','supper4');">Dodaj</button>
+                                <button class="addNewProduct"
+                                    onclick="addNewProduct('supper','supper4');">Dodaj</button>
                             </div>
                         </div>
                     </div>
@@ -1072,16 +1242,14 @@
             <section>
                 <table>
                     <tr>
-                        <th>Kalorie</th>
-                        <th>Węglowodany</th>
-                        <th>Tłuszcze</th>
                         <th>Białko</th>
+                        <th>Tłuszcze</th>
+                        <th>Węglowodany</th>
                     </tr>
                     <tr id="demands">
-                        <td class="eatenKcal"></td>
-                        <td class="eatenCarb"></td>
-                        <td class="eatenFat"></td>
-                        <td class="eatenProtein"></td>
+                        <td id="eatenProtein"></td>
+                        <td id="eatenFat"></td>
+                        <td id="eatenCarb"></td>
                     </tr>
                 </table>
             </section>
@@ -1089,4 +1257,5 @@
     </div>
 
 </body>
+
 </html>

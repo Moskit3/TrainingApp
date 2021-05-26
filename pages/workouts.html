@@ -23,7 +23,16 @@
             <span class=navIcon><a href="mainSite.html"><i class="fas fa-utensils"></i></a></span>
             <span class=navIcon><a href="workouts.html"><i class="fas fa-dumbbell"></i></a></span>
             <span class=navIcon><a href="#"><i class="fas fa-calendar-alt"></i></a></span>
-            <span class=navIcon><a href="settings.html"><i class="fas fa-cogs"></i></a></span>
+            <span class=navIcon>
+                <div class="dropdown">
+                    <button id="dropbtn" class="fas fa-cogs fa-sm"></button>
+                    <div class="dropdown-content">
+                        <a href="settings.html"><i class="fas fa-user"></i>Profil</a>
+                        <a href="#" onclick="logOut()"><i class="fas fa-sign-out-alt"></i>LOGOUT</a>
+
+                    </div>
+                </div>
+            </span>
         </nav>
 
         <main>
@@ -128,7 +137,8 @@
                             if (snapshot.exists()) {
                                 ExerciseName = Object.keys(snapshot.val());
                                 ExerciseValues = Object.values(snapshot.val());
-                                addItemsTable(ExerciseName, ExerciseValues);
+                                //addItemsTable(ExerciseName, ExerciseValues);
+                                showExerciseDetails(ExerciseName, date);
                             } else {
                                 console.log("No data available");
                             }
@@ -141,9 +151,42 @@
             });
         }
 
+        function showExerciseDetails(ExerciseName, date) {
+            var database = firebase.database();
+            var user = firebase.auth.currentUser;
+            var tmp = ExerciseName;
+            console.log(tmp);
 
-        function addItemsTable(ExerciseName, data) {
-            i = 0;
+            ExerciseName.forEach((ex) => {
+                firebase.auth().onAuthStateChanged((user) => {
+                    if (user) {
+                        user_id = user.uid;
+                        const dbRef = firebase.database().ref();
+                        dbRef.child("users").child(user_id).child("Date").child(date).child("exercises")
+                            .child(ex)
+                            .get().then(
+                                (snapshot) => {
+                                    if (snapshot.exists()) {
+                                        keys = Object.keys(snapshot.val());
+                                        values = Object.values(snapshot.val());
+                                        addItemsTable(ExerciseName, ex, keys, values);
+
+
+                                    } else {
+                                        console.log("No data available");
+                                    }
+                                }).catch((error) => {
+                                console.error(error);
+                            });
+                    } else {
+                        console.log("uzytkownik niezalogowany");
+                    }
+                });
+            });
+        }
+
+        function addItemsTable(ExerciseName, ex, keys, values) {
+            console.log(ExerciseName, ex, keys, values);
 
             var checkDate;
             today = new Date();
@@ -152,67 +195,68 @@
             month = today.getMonth() + 1;
             year = today.getFullYear();
             checkDate = year + "-" + month + "-" + day;
-            tempExerciseName = ExerciseName[i];
+            tempExerciseName = ExerciseName;
 
-            data.forEach((ex) => {
-                getTable = document.getElementById("exceriseTable");
-
-                createTr = document.createElement("tr");
-                createTd = document.createElement("td");
-                createUl = document.createElement("ul");
-                createLi = document.createElement("li");
-                createSecondTd = document.createElement("td");
-                createThirdTd = document.createElement("td");
-                createDiv = document.createElement("div");
-                createPlus = document.createElement("i");
-                createExceriseWeightInput = document.createElement("input");
-                createExceriseRepsInput = document.createElement("input");
-
-
-                getTable.appendChild(createTr);
-                createTr.setAttribute("id", Timestamp());
-                createTr.appendChild(createTd);
-                createTd.appendChild(
-                    createUl);
-                createUl.appendChild(createLi);
-                createLi.appendChild(document.createTextNode(
-                    ExerciseName[i]));
-
-                createTr.appendChild(createSecondTd);
-                createSecondTd.setAttribute("class",
-                    "workoutSeries");
+            //ExerciseName.forEach((ex2) => {
+            getTable = document.getElementById("exceriseTable");
+            createTr = document.createElement("tr");
+            createTd = document.createElement("td");
+            createUl = document.createElement("ul");
+            createLi = document.createElement("li");
+            createSecondTd = document.createElement("td");
+            createThirdTd = document.createElement("td");
+            createDiv = document.createElement("div");
+            createPlus = document.createElement("li");
+            createExceriseWeightInput = document.createElement("input");
+            createExceriseRepsInput = document.createElement("input");
 
 
-                createSecondTd.appendChild(createDiv);
-                createDiv.setAttribute("class",
-                    "workoutBox");
+            getTable.appendChild(createTr);
+            createTr.setAttribute("id", Timestamp());
+            createTr.appendChild(createTd);
+            createTd.appendChild(
+                createUl);
+            createUl.appendChild(createLi);
+            createLi.appendChild(document.createTextNode(
+                ex));
 
-                createDiv.appendChild(document.createTextNode("50kg"));
+            createTr.appendChild(createSecondTd);
+            createSecondTd.setAttribute("class",
+                "workoutSeries");
+
+
+            createSecondTd.appendChild(createDiv);
+            createDiv.setAttribute("class",
+                "workoutBox");
+
+            for (i = 0; i < keys.length; i++) {
+                createDiv.appendChild(document.createTextNode(keys[i]));
                 createDiv.appendChild(document.createTextNode("x"));
-                createDiv.appendChild(document.createTextNode("12"));
+                createDiv.appendChild(document.createTextNode(values[i]));
+                createDiv.appendChild(document.createElement("br"));
+            }
+
+            createDiv.appendChild(createExceriseWeightInput);
+            createExceriseWeightInput.setAttribute("type", "number");
+            createExceriseWeightInput.setAttribute("class",
+                "exceriseWeight");
+            createExceriseWeightInput.setAttribute("placeholder", "W");
+
+            createDiv.appendChild(createExceriseRepsInput);
+            createExceriseRepsInput.setAttribute("type", "number");
+            createExceriseRepsInput.setAttribute("class", "exceriseReps");
+            createExceriseRepsInput.setAttribute("placeholder", "R");
+
+            createTr.appendChild(createThirdTd);
+            createThirdTd.appendChild(createPlus);
+            createPlus.setAttribute("class", "fas fa-plus-circle");
 
 
-                createDiv.appendChild(createExceriseWeightInput);
-                createExceriseWeightInput.setAttribute("type", "number");
-                createExceriseWeightInput.setAttribute("class",
-                    "exceriseWeight");
-                createExceriseWeightInput.setAttribute("placeholder", "W");
+            getTable.appendChild(document.createElement("hr"));
 
-                createDiv.appendChild(createExceriseRepsInput);
-                createExceriseRepsInput.setAttribute("type", "number");
-                createExceriseRepsInput.setAttribute("class", "exceriseReps");
-                createExceriseRepsInput.setAttribute("placeholder", "R");
-
-                createTr.appendChild(createThirdTd);
-                createThirdTd.appendChild(createPlus);
-                createPlus.setAttribute("class", "fas fa-plus-circle");
-
-
-                getTable.appendChild(document.createElement("hr"));
-
-                i++;
-            });
+            //});
         }
+
 
 
 
@@ -277,11 +321,6 @@
                                 getNewExerciseName)
                             .update({
                                 Name: "Name",
-                                // Proteins: "Proteins",
-                                // Fat: "Fat",
-                                // Carbohydrates: "Carbohydrates",
-                                // Id: "id",
-
                             });
                     }
                 });
@@ -289,6 +328,16 @@
                 console.log("Pole nie może być puste")
             }
 
+        }
+
+        function logOut() {
+            firebase
+                .auth()
+                .signOut()
+                .then(() => {
+                    console.log("User signed out!");
+                    window.location.replace("../index.html");
+                });
         }
     </script>
 </body>

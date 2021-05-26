@@ -23,7 +23,16 @@
             <span class=navIcon><a href="mainSite.html"><i class="fas fa-utensils"></i></a></span>
             <span class=navIcon><a href="workouts.html"><i class="fas fa-dumbbell"></i></a></span>
             <span class=navIcon><a href="#"><i class="fas fa-calendar-alt"></i></a></span>
-            <span class=navIcon><a href="settings.html"><i class="fas fa-cogs"></i></a></span>
+            <span class=navIcon>
+                <div class="dropdown">
+                    <button id="dropbtn" class="fas fa-cogs fa-sm"></button>
+                    <div class="dropdown-content">
+                        <a href="settings.html"><i class="fas fa-user"></i>Profil</a>
+                        <a href="#" onclick="logOut()"><i class="fas fa-sign-out-alt"></i>LOGOUT</a>
+
+                    </div>
+                </div>
+            </span>
         </nav>
         <main>
             <div class="content">
@@ -527,6 +536,16 @@
                 getTable.appendChild(createTd);
 
             });
+        }
+
+        function logOut() {
+            firebase
+                .auth()
+                .signOut()
+                .then(() => {
+                    console.log("User signed out!");
+                    window.location.replace("../index.html");
+                });
         }
     </script>
 </body>
